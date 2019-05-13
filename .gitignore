@@ -25,3 +25,11 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+#Ignore .env setup for keys
+.env
+
+#Ensure that coverage results are not tracked by Git for simpleCov
+/coverage
+
+.DS_Store
