@@ -19,4 +19,3 @@ test:
 production:
   <<: *default
   database: chartSchool_production
-  
