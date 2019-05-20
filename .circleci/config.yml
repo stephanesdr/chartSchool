@@ -25,64 +25,29 @@ jobs:
 
       - restore_cache:
           keys:
-        - v1-dependencies-r-{{ checksum "Gemfile.lock" }}-y-{{ checksum "yarn.lock" }}
-        - v1-dependencies-
+          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+          - v1-dependencies-
 
-    - run:
-        name: install libs
-        command: |
-          sudo apt-get install xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
-    - run:
-        name: install dependencies
-        command: |
-          bundle install --jobs=4 --retry=3 --path vendor/bundle
-    - run:
-        name: install dependencies
-        command: |
-          yarn install --frozen-lockfile
-    - save_cache:
-        paths:
-        - ./vendor/bundle
-        - ~/.cache
-        key: v1-dependencies-r-{{ checksum "Gemfile.lock" }}-y-{{ checksum "yarn.lock" }}
-    - run:
-        name: Wait for DB
-        command: dockerize -wait tcp://localhost:5432 -timeout 1m
-    - run: bundle exec rails db:create db:migrate
-    - run:
-        name: run linting
-        command: |
-          bundle exec rubocop
-    - run:
-        name: run tests
-        command: |
-          mkdir /tmp/test-results
-          COVERAGE=true bundle exec rspec --format progress \
-                          --format RspecJunitFormatter \
-                          --out /tmp/test-results/rspec.xml \
-                          --format progress
-    - run:
-        name: start server for Integration tests
-        command: |
-          bundle exec rails db:reset && bundle exec rails db:seed && bundle exec rails s -p 2999 -d && yarn run wait-on http://localhost:2999
-    - run:
-        name: run integration tests
-        command: |
-          npx cypress run
-    - store_test_results:
-        path: /tmp/test-results
-    - store_artifacts:
-        path: /tmp/test-results
-        destination: test-results
-    - store_artifacts:
-        path: ~/app/coverage
-        destination: coverage-results
-    - store_artifacts:
-        path: ~/app/cypress/videos
-        destination: coverage-results
-workflows:
-  version: 2
-  workflow:
-    jobs:
-    - build
-    
+      - run:
+          name: install dependencies
+          command: |
+            bundle install
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run: bundle exec rails db:create db:migrate
+
+      - run:
+          name: run linting
+          command: |
+            bundle exec rubocop
+      - run:
+          name: run tests
+          command: |
+            bundle exec rspec --format progress \
