@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :students, :controllers => { registrations: 'registrations' }
+  devise_for :students, path: 'students', :controllers => { sessions: "students/sessions",
+                                                            registrations: "students/registrations" }
+  devise_for :teachers, path: 'teachers', :controllers => { sessions: "teachers/sessions",
+                                                            registrations: "teachers/registrations" }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
