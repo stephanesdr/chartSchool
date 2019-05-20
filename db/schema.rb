@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2019_05_20_163006) do
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end
 
+<<<<<<< HEAD
   create_table "teachers", force: :cascade do |t|
     t.string "name"
     t.string "email", default: "", null: false
@@ -68,6 +69,8 @@ ActiveRecord::Schema.define(version: 2019_05_20_163006) do
     t.index ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
   end
 
+=======
+>>>>>>> master
   add_foreign_key "attendances", "courses"
   add_foreign_key "attendances", "students"
 end
