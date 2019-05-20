@@ -15,6 +15,9 @@
 #
 
 class Course < ApplicationRecord
+  has_many :attendances, dependent: :destroy
+  has_many :students, through: :attendances
+
   validates :title, presence: true
   validate :date_cannot_be_in_the_past
 
