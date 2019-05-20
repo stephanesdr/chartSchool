@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: users
+# Table name: students
 #
 #  id                     :bigint           not null, primary key
 #  confirmation_sent_at   :datetime
@@ -18,13 +18,14 @@
 #
 # Indexes
 #
-#  index_users_on_confirmation_token    (confirmation_token) UNIQUE
-#  index_users_on_email                 (email) UNIQUE
-#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_students_on_confirmation_token    (confirmation_token) UNIQUE
+#  index_students_on_email                 (email) UNIQUE
+#  index_students_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
-require 'rails_helper'
-
-RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+class Student < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
 end

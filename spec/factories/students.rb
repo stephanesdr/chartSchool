@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: users
+# Table name: students
 #
 #  id                     :bigint           not null, primary key
 #  confirmation_sent_at   :datetime
@@ -18,12 +18,12 @@
 #
 # Indexes
 #
-#  index_users_on_confirmation_token    (confirmation_token) UNIQUE
-#  index_users_on_email                 (email) UNIQUE
-#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_students_on_confirmation_token    (confirmation_token) UNIQUE
+#  index_students_on_email                 (email) UNIQUE
+#  index_students_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
 FactoryBot.define do
-  factory :user do
+  factory :student do
   end
 end
