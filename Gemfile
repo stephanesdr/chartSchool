@@ -34,7 +34,6 @@ end
 
 group :development do
   gem 'annotate', '~> 2.7', '>= 2.7.4'
-  gem 'husky', '~> 0.5.15'	
   gem 'guard'
   gem 'guard-rspec', require: false
   gem 'guard-rubocop'
