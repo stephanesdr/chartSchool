@@ -33,12 +33,11 @@ class Student < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-
   validates :email,
-           presence: true,
-           uniqueness: true,
-           format: {
-             with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "Email not valid"
-           }
+            presence: true,
+            uniqueness: true,
+            format: {
+              with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "Email not valid"
+            }
   validates :name, presence: true
 end
