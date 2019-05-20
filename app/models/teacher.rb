@@ -36,4 +36,5 @@ class Teacher < ApplicationRecord
             format: {
               with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "Email not valid"
             }
+  validates :name, presence: true
 end
