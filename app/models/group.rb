@@ -14,4 +14,7 @@ class Group < ApplicationRecord
   # validates :title, presence: true
   has_many :group_students, dependent: :destroy
   has_many :students, through: :group_students
+
+  has_many :group_teachers, dependent: :destroy
+  has_many :teachers, through: :group_teachers
 end
