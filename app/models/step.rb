@@ -14,4 +14,6 @@
 
 class Step < ApplicationRecord
   validates :title, presence: true
+  has_many :step_students, dependent: :destroy
+  has_many :students, through: :step_students
 end
