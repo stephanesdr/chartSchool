@@ -42,6 +42,7 @@ group :development do
   gem 'rubocop-performance'
   gem 'rubocop-rspec', require: false
   gem 'spring', '~> 2.0', '>= 2.0.2'
+  gem 'table_print'
 end
 
 group :test do
