@@ -10,6 +10,15 @@
 #  title         :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  course_id     :bigint
+#
+# Indexes
+#
+#  index_steps_on_course_id  (course_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (course_id => courses.id)
 #
 
 FactoryBot.define do
@@ -17,5 +26,6 @@ FactoryBot.define do
     title { Faker::Educator.subject }
     description { Faker::GreekPhilosophers.quote }
     teacher_check { false }
+    course_id { 1 }
   end
 end
