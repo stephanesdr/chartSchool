@@ -10,8 +10,20 @@
 #  title         :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  course_id     :bigint
+#
+# Indexes
+#
+#  index_steps_on_course_id  (course_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (course_id => courses.id)
 #
 
 class Step < ApplicationRecord
   validates :title, presence: true
+  has_many :step_students, dependent: :destroy
+  has_many :students, through: :step_students
+  belongs_to :course
 end

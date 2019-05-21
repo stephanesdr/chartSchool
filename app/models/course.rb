@@ -27,6 +27,8 @@ class Course < ApplicationRecord
   validates :title, presence: true
   validate :date_cannot_be_in_the_past
 
+  has_many :steps, dependent: :destroy
+
   def date_cannot_be_in_the_past
     if end_time.present? && end_time < Time.zone.today
       errors.add(:end_time, "end_date can't be in the past")
