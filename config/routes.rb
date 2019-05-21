@@ -6,7 +6,9 @@ Rails.application.routes.draw do
                                                             registrations: "teachers/registrations" }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :courses, only: %i[new create show] do
-    resources :steps, only: %i[create]
+    resources :steps, only: %i[create] do
+      resources :steps_students, only: %i[create destroy]
+    end
   end
 
 end
