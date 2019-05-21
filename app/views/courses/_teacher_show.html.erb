@@ -3,6 +3,21 @@
 <p><%= @course.description %></p>
 <p><%= @course.resource %></p>
 
+Add steps :
+<%= form_tag url_for(course_steps_path(@course.id)), multipart: true, method: "post" do %>
+
+
+
+        <%= label_tag 'Titre' %><br>
+        <%= text_field_tag 'title', @title  %><br>
+
+        <%= label_tag 'Description' %><br>
+        <%= text_area_tag 'description', @description  %><br>
+
+        <%= submit_tag "Créer une étape" %>
+
+  <% end %>
+
 <% @steps.each do |step| %>
 <%= step.title %>
 <%= step.description %> <br>
