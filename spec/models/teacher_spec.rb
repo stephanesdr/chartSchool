@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: students
+# Table name: teachers
 #
 #  id                     :bigint           not null, primary key
 #  confirmation_sent_at   :datetime
@@ -19,16 +19,16 @@
 #
 # Indexes
 #
-#  index_students_on_confirmation_token    (confirmation_token) UNIQUE
-#  index_students_on_email                 (email) UNIQUE
-#  index_students_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_teachers_on_confirmation_token    (confirmation_token) UNIQUE
+#  index_teachers_on_email                 (email) UNIQUE
+#  index_teachers_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
 require 'rails_helper'
 
-RSpec.describe Student, type: :model do
+RSpec.describe Teacher, type: :model do
   describe 'Model instantiation' do
-    subject(:new_student) { described_class.new }
+    subject(:new_teacher) { described_class.new }
 
     describe 'Database' do
       it { is_expected.to have_db_column(:id).of_type(:integer) }
@@ -38,15 +38,12 @@ RSpec.describe Student, type: :model do
       it { is_expected.to have_db_column(:updated_at).of_type(:datetime).with_options(null: false) }
       it { is_expected.to have_db_column(:reset_password_sent_at).of_type(:datetime) }
       it { is_expected.to have_db_column(:reset_password_token).of_type(:string) }
+      it { is_expected.to have_db_column(:confirmation_sent_at).of_type(:datetime) }
+      it { is_expected.to have_db_column(:confirmation_token).of_type(:string) }
     end
   end
 
-  describe 'Connexion' do
-    it { is_expected.to have_many :attendances }
-    it { is_expected.to have_many :courses }
-  end
-
   context 'when validation is ok' do
-    it { expect(build(:student)).to be_valid }
+    it { expect(build(:teacher)).to be_valid }
   end
 end

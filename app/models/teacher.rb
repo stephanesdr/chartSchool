@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: students
+# Table name: teachers
 #
 #  id                     :bigint           not null, primary key
 #  confirmation_sent_at   :datetime
@@ -19,17 +19,14 @@
 #
 # Indexes
 #
-#  index_students_on_confirmation_token    (confirmation_token) UNIQUE
-#  index_students_on_email                 (email) UNIQUE
-#  index_students_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_teachers_on_confirmation_token    (confirmation_token) UNIQUE
+#  index_teachers_on_email                 (email) UNIQUE
+#  index_teachers_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
-class Student < ApplicationRecord
+class Teacher < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-
-  has_many :attendances, dependent: :destroy
-  has_many :courses, through: :attendances
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
