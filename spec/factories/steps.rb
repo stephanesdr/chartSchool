@@ -26,6 +26,6 @@ FactoryBot.define do
     title { Faker::Educator.subject }
     description { Faker::GreekPhilosophers.quote }
     teacher_check { false }
-    course_id { 1 }
+    course { FactoryBot.create(:course) }
   end
 end

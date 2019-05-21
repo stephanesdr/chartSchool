@@ -24,9 +24,7 @@
 require 'rails_helper'
 
 RSpec.describe Step, type: :model do
-  # @course = Course.create
-  # let(:course) { FactoryBot.build(:course) }
-  let(:step) { FactoryBot.build(:step, :course) }
+  let(:step) { FactoryBot.build(:step) }
 
   describe 'Model instantiation' do
     subject(:new_step) { described_class.new }
