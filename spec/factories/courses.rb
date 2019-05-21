@@ -12,6 +12,11 @@
 #  title       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  teacher_id  :bigint
+#
+# Indexes
+#
+#  index_courses_on_teacher_id  (teacher_id)
 #
 
 FactoryBot.define do
