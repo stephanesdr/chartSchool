@@ -24,5 +24,24 @@
 require 'rails_helper'
 
 RSpec.describe GeneralQuestionVote, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:general_question_vote) { FactoryBot.build(:general_question_vote) }
+
+  describe 'Model instantiation' do
+    subject(:new_general_question_vote) { described_class.new }
+
+    describe 'Database' do
+      it { is_expected.to have_db_column(:created_at).of_type(:datetime).with_options(null: false) }
+      it { is_expected.to have_db_column(:id).of_type(:integer).with_options(null: false) }
+      it { is_expected.to have_db_column(:general_question_id).of_type(:integer) }
+      it { is_expected.to have_db_column(:student_id).of_type(:integer) }
+    end
+  end
+
+  describe "General Question" do
+    it { expect(general_question_vote).to belong_to(:general_question) }
+  end
+
+  describe "Student" do
+    it { expect(general_question_vote).to belong_to(:student) }
+  end
 end
