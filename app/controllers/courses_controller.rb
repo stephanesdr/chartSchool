@@ -19,5 +19,6 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
+    @steps = @course.steps
   end
 end
