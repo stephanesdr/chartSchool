@@ -5,5 +5,8 @@ Rails.application.routes.draw do
   devise_for :teachers, path: 'teachers', :controllers => { sessions: "teachers/sessions",
                                                             registrations: "teachers/registrations" }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :courses, only: %i[new create show]
+  resources :courses, only: %i[new create show] do
+    resources :steps, only: %i[create]
+  end
+
 end
