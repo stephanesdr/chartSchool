@@ -23,7 +23,7 @@ FactoryBot.define do
   factory :course do
     title { Faker::Educator.subject }
     resource { Faker::GreekPhilosophers.quote }
-    start_time { Faker::Date.forward(23) }
+    start_time { Faker::Date.forward(1) }
     end_time { Faker::Date.forward(24) }
     description { Faker::Books::Lovecraft.paragraph_by_chars }
   end
