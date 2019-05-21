@@ -40,4 +40,5 @@ class Teacher < ApplicationRecord
               with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "Email not valid"
             }
   validates :name, presence: true
+  has_many :courses, dependent: :destroy
 end
