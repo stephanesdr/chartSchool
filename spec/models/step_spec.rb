@@ -10,11 +10,21 @@
 #  title         :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  course_id     :bigint
+#
+# Indexes
+#
+#  index_steps_on_course_id  (course_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (course_id => courses.id)
 #
 
 require 'rails_helper'
 
 RSpec.describe Step, type: :model do
+  let(:course) { FactoryBot.build(:course) }
   let(:step) { FactoryBot.build(:step) }
 
   describe 'Model instantiation' do
@@ -29,12 +39,9 @@ RSpec.describe Step, type: :model do
     end
   end
 
-  # describe 'Connexion' do
-  #   it { is_expected.to have_many :student_step_check }
-  #   it { is_expected.to have_many :students }
-  # end
-
-  context 'when validation is ok' do
-    it { expect(build(:step)).to be_valid }
+  describe 'Connexion' do
+    it { is_expected.to have_many :step_students }
+    it { is_expected.to have_many :students }
+    it { is_expected.to belong_to :course }
   end
 end
