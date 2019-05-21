@@ -24,4 +24,13 @@ RSpec.describe Group, type: :model do
       it { is_expected.to have_db_column(:name).of_type(:string) }
     end
   end
+
+  describe 'Connexion' do
+    it { is_expected.to have_many :group_students }
+    it { is_expected.to have_many :students }
+  end
+
+  context 'when validation is ok' do
+    it { expect(build(:group)).to be_valid }
+  end
 end

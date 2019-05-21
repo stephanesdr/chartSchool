@@ -34,4 +34,13 @@ RSpec.describe Course, type: :model do
       it { is_expected.to have_db_column(:end_time).of_type(:datetime) }
     end
   end
+
+  describe 'Connexion' do
+    it { is_expected.to have_many :attendances }
+    it { is_expected.to have_many :students }
+  end
+
+  context 'when validation is ok' do
+    it { expect(build(:course)).to be_valid }
+  end
 end
