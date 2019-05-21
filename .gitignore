@@ -29,6 +29,9 @@
 #Ignore .env setup for keys
 .env
 
+#Ensure that rspec.xml results are not tracked by git
+rspec.xml
+
 #Ensure that coverage results are not tracked by Git for simpleCov
 /coverage
 
