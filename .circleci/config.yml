@@ -14,7 +14,7 @@ jobs:
         environment:
           POSTGRES_USER: circleci_user
           POSTGRES_PASSWORD: password
-          POSTGRES_DB: project_01_circleci_db
+          POSTGRES_DB: chartSchool_circleci_db
 
     steps:
       - checkout
@@ -31,10 +31,11 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            bundle install
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
       - save_cache:
           paths:
             - ./vendor/bundle
+            - ~/.cache
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       - run:
@@ -47,7 +48,32 @@ jobs:
           name: run linting
           command: |
             bundle exec rubocop
+      # run tests!
       - run:
           name: run tests
           command: |
-            bundle exec rspec --format progress \
+            mkdir /tmp/test-results
+            COVERAGE=true bundle exec rspec --format progress \
+                            --format RspecJunitFormatter \
+                            --out /tmp/test-results/rspec.xml \
+                            --format progress
+      - run:
+          name: start server for Integration tests
+          command: |
+            bundle exec rails db:reset && bundle exec rails db:seed && bundle exec rails s -p 2999 -d && yarn run wait-on http://localhost:2999
+      - run:
+          name: run integration tests
+          command: |
+            npx cypress run
+      # collect reports
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+      - store_artifacts:
+          path: ~/app/coverage
+          destination: coverage-results
+      - store_artifacts:
+          path: ~/app/cypress/videos
+          destination: coverage-results
