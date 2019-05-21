@@ -17,7 +17,7 @@
     </li>
     <li>
       <% if student_signed_in? %>
-        <%= link_to "deconnexion", destroy_teacher_session_path, method: "delete" %>
+        <%= link_to "deconnexion", destroy_student_session_path, method: "delete" %>
       <% else %>
         <%= link_to "deconnexion", destroy_teacher_session_path, method: "delete" %>
       <% end %>
