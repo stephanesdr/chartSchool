@@ -24,7 +24,6 @@
 require 'rails_helper'
 
 RSpec.describe Step, type: :model do
-  let(:course) { FactoryBot.build(:course) }
   let(:step) { FactoryBot.build(:step) }
 
   describe 'Model instantiation' do
@@ -43,5 +42,9 @@ RSpec.describe Step, type: :model do
     it { is_expected.to have_many :step_students }
     it { is_expected.to have_many :students }
     it { is_expected.to belong_to :course }
+  end
+
+  context 'when validation is ok' do
+    it { expect(build(:step)).to be_valid }
   end
 end
