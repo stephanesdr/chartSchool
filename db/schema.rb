@@ -36,6 +36,27 @@ ActiveRecord::Schema.define(version: 2019_05_21_134638) do
     t.index ["teacher_id"], name: "index_courses_on_teacher_id"
   end
 
+  create_table "general_question_votes", force: :cascade do |t|
+    t.bigint "general_question_id"
+    t.bigint "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["general_question_id"], name: "index_general_question_votes_on_general_question_id"
+    t.index ["student_id"], name: "index_general_question_votes_on_student_id"
+  end
+
+  create_table "general_questions", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.boolean "teacher_check", default: false
+    t.bigint "student_id"
+    t.bigint "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_general_questions_on_course_id"
+    t.index ["student_id"], name: "index_general_questions_on_student_id"
+  end
+
   create_table "group_students", force: :cascade do |t|
     t.bigint "group_id"
     t.bigint "student_id"
@@ -115,6 +136,10 @@ ActiveRecord::Schema.define(version: 2019_05_21_134638) do
 
   add_foreign_key "attendances", "courses"
   add_foreign_key "attendances", "students"
+  add_foreign_key "general_question_votes", "general_questions"
+  add_foreign_key "general_question_votes", "students"
+  add_foreign_key "general_questions", "courses"
+  add_foreign_key "general_questions", "students"
   add_foreign_key "group_students", "groups"
   add_foreign_key "group_students", "students"
   add_foreign_key "group_teachers", "groups"
