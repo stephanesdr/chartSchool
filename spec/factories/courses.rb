@@ -26,6 +26,6 @@ FactoryBot.define do
     start_time { Time.zone.now }
     end_time { Faker::Date.forward(24) }
     description { Faker::Books::Lovecraft.paragraph_by_chars }
-    teacher { Teacher.all.sample }
+    teacher_id { 1 }
   end
 end
