@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 2019_05_21_134638) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "teacher_id"
+    t.index ["teacher_id"], name: "index_courses_on_teacher_id"
   end
 
   create_table "group_students", force: :cascade do |t|
