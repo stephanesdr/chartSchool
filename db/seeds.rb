@@ -8,13 +8,106 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-teacher1 = Teacher.create(name: "teacher1", email: "teacher1@email.com", password: "password")
-student1 = Student.create(name: "student1", email: "student1@email.com", password: "password")
+require 'faker'
 
-course1 = Course.new(title: "course1")
-course1.teacher = teacher1
-course1.save
-question1 = GeneralQuestion.new(title: "title1", description: "description1")
-question1.course = course1
-question1.student = student1
-question1.save
+1.upto(10) do |i|
+  name = Faker::Name.unique.name
+  Teacher.create!(
+    name: name,
+    email: Faker::Internet.free_email("#{name}#{rand(1..1000)}"),
+    password: Faker::Internet.password,
+    confirmed_at: Time.zone.now
+  )
+  p "Teacher #{i} : créé"
+end
+
+1.upto(10) do |i|
+  name = Faker::Name.unique.name
+  Student.create!(
+    name: name,
+    email: Faker::Internet.free_email("#{name}#{rand(1..1000)}"),
+    password: Faker::Internet.password,
+    confirmed_at: Time.zone.now
+  )
+  p "Student #{i} : créé"
+end
+
+1.upto(50) do |i|
+  Course.create!(
+    title: Faker::Educator.course_name,
+    resource: Faker::Lorem.sentence,
+    description: Faker::Marketing.buzzwords,
+    start_time: Faker::Date.forward(23),
+    end_time: Faker::Date.forward(24),
+    teacher_id: Teacher.all.sample.id,
+  )
+  p "Course #{i} : créé"
+end
+
+1.upto(100) do |i|
+  Step.create!(
+    title: Faker::Appliance.equipment,
+    description: "#{Faker::Marketing.buzzwords}!",
+    teacher_check: false,
+    course_id: Course.all.sample.id,
+  )
+  p "Step #{i} : créé"
+end
+
+1.upto(20) do |i|
+  Group.create!(
+    name: Faker::Science.scientist,
+  )
+  p "Group #{i} : créé"
+end
+
+# 1.upto(200) do |i|
+#   GeneralQuestion.create!(
+#    title: "#{Faker::Bank.name}?",
+#     description: Faker::Movies::Lebowski.quote ,
+#     teacher_check: false,
+#   )
+#   p "GeneralQuestion #{i} : créé"
+# end
+
+# __________JUNCTION TABLE SEEDS______________
+
+1.upto(100) do |i|
+  Attendance.create!(
+    student_id: Student.all.sample.id,
+    course_id: Course.all.sample.id
+  )
+  p "Attendance #{i} : créé"
+end
+
+1.upto(100) do |i|
+  GroupStudent.create!(
+    student_id: Student.all.sample.id,
+    group_id: Group.all.sample.id
+  )
+  p "GroupStudent #{i} : créé"
+end
+
+1.upto(100) do |i|
+  GroupTeacher.create!(
+    group_id: Group.all.sample.id,
+    teacher_id: Teacher.all.sample.id
+  )
+  p "GroupTeacher #{i} : créé"
+end
+
+1.upto(100) do |i|
+  StepStudent.create!(
+    step_id: Step.all.sample.id,
+    student_id: Student.all.sample.id
+  )
+  p "ChekStep #{i} : créé"
+end
+
+# 1.upto(100) do |i|
+#   GeneralQuestionStudent.create!(
+#     general_question_id: GeneralQuestion.all.sample.id  ,
+#     student_id: Student.all.sample.id
+#   )
+#   p "Vote #{i} : créé"
+# end
