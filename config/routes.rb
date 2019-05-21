@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'home#index'
   devise_for :students, path: 'students', :controllers => { sessions: "students/sessions",
                                                             registrations: "students/registrations" }
   devise_for :teachers, path: 'teachers', :controllers => { sessions: "teachers/sessions",
