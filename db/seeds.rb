@@ -61,14 +61,16 @@ end
   p "Group #{i} : créé"
 end
 
-# 1.upto(200) do |i|
-#   GeneralQuestion.create!(
-#    title: "#{Faker::Bank.name}?",
-#     description: Faker::Movies::Lebowski.quote ,
-#     teacher_check: false,
-#   )
-#   p "GeneralQuestion #{i} : créé"
-# end
+1.upto(200) do |i|
+  GeneralQuestion.create!(
+    title: "#{Faker::Books::Lovecraft.sentence}  : #{Faker::Bank.name}?",
+    description: Faker::Movies::Lebowski.quote,
+    student_id: Student.all.sample.id,
+    course_id: Course.all.sample.id,
+    teacher_check: false,
+  )
+  p "GeneralQuestion #{i} : créé"
+end
 
 # __________JUNCTION TABLE SEEDS______________
 
@@ -104,10 +106,10 @@ end
   p "ChekStep #{i} : créé"
 end
 
-# 1.upto(100) do |i|
-#   GeneralQuestionStudent.create!(
-#     general_question_id: GeneralQuestion.all.sample.id  ,
-#     student_id: Student.all.sample.id
-#   )
-#   p "Vote #{i} : créé"
-# end
+1.upto(100) do |i|
+  GeneralQuestionVote.create!(
+    general_question_id: GeneralQuestion.all.sample.id,
+    student_id: Student.all.sample.id
+  )
+  p "Vote #{i} : créé"
+end
