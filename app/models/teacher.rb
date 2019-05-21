@@ -27,6 +27,9 @@
 class Teacher < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  has_many :group_teachers, dependent: :destroy
+  has_many :groups, through: :group_teachers
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -37,4 +40,5 @@ class Teacher < ApplicationRecord
               with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "Email not valid"
             }
   validates :name, presence: true
+  has_many :courses, dependent: :destroy
 end

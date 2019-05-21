@@ -30,7 +30,14 @@ class Student < ApplicationRecord
 
   has_many :attendances, dependent: :destroy
   has_many :courses, through: :attendances
+
   has_many :general_questions, dependent: :destroy
+
+  has_many :group_students, dependent: :destroy
+  has_many :groups, through: :group_students
+
+  has_many :step_students, dependent: :destroy
+  has_many :steps, through: :step_students
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
