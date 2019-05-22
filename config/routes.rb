@@ -10,7 +10,11 @@ Rails.application.routes.draw do
     resources :steps, only: %i[create] do
       resources :steps_students, only: %i[create destroy]
     end
-    resources :general_questions, only: %i[new create index show destroy]
+    resources :general_question_votes, only: %i[destroy ]
+    resources :general_questions, only: %i[new create index show destroy] do
+      resources :general_question_votes, only: %i[create]
+    end
+
   end
 
 end
