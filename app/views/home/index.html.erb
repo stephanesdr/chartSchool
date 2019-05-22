@@ -1,54 +1,145 @@
-<h1>En attendant mieux !</h1>
-<p></p>
+ <section>
+      <h2 id="introduction">Introduction</h2>
+<p>Using the JavaScriptLibrary.js API you&#39;ll be able to experience coding <em>advantages</em> unlike any you have known. Zero problems, increased efficiency, number one programming forever.</p>
+<p>Play around with the library right here in this <strong>live code editor</strong>. This is an example of an <a href="https://blog.codepen.io/documentation/pro-features/editable-embeds/">editable embed</a>, a feature of CodePen.</p>
+<p>
+  <p data-height="429" data-theme-id="33864" data-slug-hash="GGXaZw" data-default-tab="js,result" data-user="chriscoyier" data-embed-version="2" data-pen-title="Dumb Output" data-editable="true" class="codepen">See the Pen <a href="https://codepen.io/chriscoyier/pen/GGXaZw/">Dumb Output</a> by Chris Coyier (<a href="https://codepen.io/chriscoyier">@chriscoyier</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-<ul>
-<% if current_student || current_teacher %>
-  <div>
-    <% if student_signed_in? || teacher_signed_in? %>
-    <li>
-      <%= student_signed_in? ? current_student.email : current_teacher.email %> connecté
-    </li>
-    <li>
-      <% if student_signed_in? %>
-        <%= link_to "profil", edit_student_registration_path(current_student.id) %>
-      <% else %>
-        <%= link_to "profil", edit_teacher_registration_path(current_teacher.id) %>
-      <% end %>
-    </li>
-    <li>
-      <% if student_signed_in? %>
-        <%= link_to "deconnexion", destroy_teacher_session_path, method: "delete" %>
-      <% else %>
-        <%= link_to "deconnexion", destroy_teacher_session_path, method: "delete" %>
-      <% end %>
-    </li>
-    <% end %>
-  </div>
-
-</ul>
-<% else %>
-  <div>
-    <ul>
-      <li>
-        Aucun utilisateur connecté <br><br>
-      </li>
-      Etudiant ? <br>
-      <li>
-        <%= link_to "inscription", new_student_registration_path %>
-      </li>
-      <li>
-        <%= link_to "connexion", new_student_session_path %>
-      </li>
-      <br>
-      Enseignant ? <br>
-      <li>
-        <%= link_to "inscription", new_teacher_registration_path %>
-      </li>
-      <li>
-        <%= link_to "connexion", new_student_session_path %>
-      </li>
-    </ul>
-  </div>
-
-<% end %>
+<div class="callout">
+  <strong>Hey!</strong>
+  <p>In case it&#39;s not entirely clear, this is a fake project. But it&#39;s a <em>real</em> website template you can use! <a href="https://codepen.io/chriscoyier/project/editor/ZrxvQG">Here it is on CodePen</a> for your forking or downloading pleasure.</p>
 </div>
+    </section>
+    
+    <section>
+      <h2 id="installation">Installation</h2>
+<p>JavaScriptLibrary.js is available on npm, so you can:</p>
+<pre><code class="lang-bash">npm i javascriptlibrary --save-dev
+# or
+yarn add javascriptlibrary
+</code></pre>
+<p>Then use it in your JavaScript like:</p>
+<pre><code class="lang-js">import library from &quot;JavaScriptLibrary&quot;;
+</code></pre>
+<p>Or you can load it from a CDN like:</p>
+<pre><code class="lang-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/javascriptlibrary/1.0.0/umd/javascriptlibrary.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Which gives you a <code>library</code> global.</p>
+    </section>
+  
+    <section>
+      <h2 id="getting-started">Getting Started</h2>
+<p>Now you can use this earth-shattering library.</p>
+<pre><code class="lang-javascript">library.add(2, 2);
+// 4
+
+library.subtract(100, 20);
+// 80
+</code></pre>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, totam nemo aliquam id at repellat tempore error earum qui autem, ab ea ducimus eos sint modi blanditiis quam porro nihil.</p>
+    </section> 
+
+    <section>
+      <h2 id="practical-usage">Practical Usage</h2>
+<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim ullam tempora eius consequuntur sequi explicabo quae. Ad ea consequatur dicta, eligendi laudantium labore assumenda, eos aspernatur eveniet fuga, perferendis sequi.</p>
+<ul>
+  <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Animi, voluptate. Praesentium suscipit quaerat nam voluptas dolore porro amet? Eligendi, ipsam?</li>
+  <li>Voluptatibus molestiae quasi magnam, numquam impedit sequi enim cumque distinctio repellat vitae qui assumenda cupiditate voluptatem optio alias inventore sint.</li>
+  <li>Dolorem inventore adipisci magnam nisi, fuga enim iste quaerat dicta dolor ea voluptatem. Aperiam pariatur impedit rem repudiandae, blanditiis unde!</li>
+</ul> 
+    </section>
+
+    
+    <section>
+      <h2 id="add">Add</h2>
+<pre><code class="lang-js">library.add(1, 7);
+</code></pre>
+<p>It can take any number of parameters.</p>
+<pre><code class="lang-js">library.add(7, -2, 14);
+</code></pre> 
+    </section>
+    
+    <section>
+      <h2 id="subtract">Subtract</h2>
+<pre><code class="lang-js">library.subtract(18, 1);
+</code></pre>
+<p>It can take any number of parameters and subtracts all but the first from the first.</p>
+<pre><code class="lang-js">library.add(1, -2, 1478621);
+</code></pre> 
+    </section>
+    
+    <section>
+      <h2 id="multiply">Multiply</h2>
+<pre><code class="lang-js">library.multiply(5, 8);
+</code></pre>
+<p>It can take any number of parameters.</p>
+<pre><code class="lang-js">library.multiply(8, &quot;3e2&quot;, 100);
+</code></pre> 
+    </section>
+    
+    <section>
+      <h2 id="divide">Divide</h2>
+<pre><code class="lang-js">library.divide(&quot;this country&quot;, &quot;in half 🤕&quot;);
+</code></pre> 
+    </section>
+
+
+
+<section>
+  <h1>En attendant mieux !</h1>
+  <p></p>
+  
+  <ul>
+  <% if current_student || current_teacher %>
+    <div>
+      <% if student_signed_in? || teacher_signed_in? %>
+      <li>
+        <%= student_signed_in? ? current_student.email : current_teacher.email %> connecté
+      </li>
+      <li>
+        <% if student_signed_in? %>
+          <%= link_to "profil", edit_student_registration_path(current_student.id) %>
+        <% else %>
+          <%= link_to "profil", edit_teacher_registration_path(current_teacher.id) %>
+        <% end %>
+      </li>
+      <li>
+        <% if student_signed_in? %>
+          <%= link_to "deconnexion", destroy_teacher_session_path, method: "delete" %>
+        <% else %>
+          <%= link_to "deconnexion", destroy_teacher_session_path, method: "delete" %>
+        <% end %>
+      </li>
+      <% end %>
+    </div>
+  
+  </ul>
+  <% else %>
+    <div>
+      <ul>
+        <li>
+          Aucun utilisateur connecté <br><br>
+        </li>
+        Etudiant ? <br>
+        <li>
+          <%= link_to "inscription", new_student_registration_path %>
+        </li>
+        <li>
+          <%= link_to "connexion", new_student_session_path %>
+        </li>
+        <br>
+        Enseignant ? <br>
+        <li>
+          <%= link_to "inscription", new_teacher_registration_path %>
+        </li>
+        <li>
+          <%= link_to "connexion", new_student_session_path %>
+        </li>
+      </ul>
+    </div>
+  
+  <% end %>
+  </div>
+</section>
