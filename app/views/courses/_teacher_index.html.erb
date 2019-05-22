@@ -1,39 +1,43 @@
 <h1>Mes cours à venir</h1>
 
-<table style="width:100%">
-  <tr>
-    <th>Titre</th>
-    <th>Date</th>
-  </tr>
-
-  <% @courses.each do |course| %>
-
-    <% if course.teacher == current_teacher && course.end_time < Time.zone.now %>
+  <% if @archived_courses %>
+  <table style="width:100%">
+    <tr>
+      <th>Titre</th>
+      <th>Date</th>
+      <th>Link</th>
+    </tr>
+    <% @archived_courses.each do |course| %>
     <tr>
       <td><%= course.title %></td>
       <td><%= course.start_time %></td>
+      <td><%= link_to 'lien', course_path(course) %></td>
     </tr>
 
     <% end %>
+  <% else %>
+    <p>Aucun cours à venir</p>
   <% end %>
-</table>
+  </table>
 
 <h1>Mes cours passés</h1>
 
-<table style="width:100%">
-  <tr>
-    <th>Titre</th>
-    <th>Date</th>
-  </tr>
-
-  <% @courses.each do |course| %>
-
-    <% if course.teacher == current_teacher && course.end_time > Time.zone.now %>
+  <% if @pending_courses %>
+  <table style="width:100%">
+    <tr>
+      <th>Titre</th>
+      <th>Date</th>
+      <th>Link</th>
+    </tr>
+    <% @pending_courses.each do |course| %>
     <tr>
       <td><%= course.title %></td>
       <td><%= course.start_time %></td>
+      <td><%= link_to 'lien', course_path(course) %></td>
     </tr>
 
     <% end %>
+  <% else %>
+    <p>Aucun cours archivé</p>
   <% end %>
-</table>
+  </table>
