@@ -10,6 +10,20 @@
 
 require 'faker'
 
+Teacher.create!(
+  name: "teacher",
+  email: "teacher@email.com",
+  password: "password",
+  confirmed_at: Time.zone.now
+)
+
+Student.create!(
+  name: "student",
+  email: "student@email.com",
+  password: "password",
+  confirmed_at: Time.zone.now
+)
+
 1.upto(10) do |i|
   name = Faker::Name.unique.name
   Teacher.create!(
