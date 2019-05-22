@@ -11,21 +11,21 @@
 require 'faker'
 
 unless Teacher.find_by(email: "teacher@email.com")
-Teacher.create!(
-  name: "teacher",
-  email: "teacher@email.com",
-  password: "password",
-  confirmed_at: Time.zone.now
-)
+  Teacher.create!(
+    name: "teacher",
+    email: "teacher@email.com",
+    password: "password",
+    confirmed_at: Time.zone.now
+  )
 end
 
 unless Student.find_by(email: "student@email.com")
-Student.create!(
-  name: "student",
-  email: "student@email.com",
-  password: "password",
-  confirmed_at: Time.zone.now
-)
+  Student.create!(
+    name: "student",
+    email: "student@email.com",
+    password: "password",
+    confirmed_at: Time.zone.now
+  )
 end
 
 1.upto(10) do |i|
