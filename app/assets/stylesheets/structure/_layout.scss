@@ -15,7 +15,7 @@ body {
     4└─┴────┘
     */
     
-    @media (#{$small-screen}) {
+    @media #{$small-screen} {
        grid-template-columns: 40px 1fr;
     }
   }
