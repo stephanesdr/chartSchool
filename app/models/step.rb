@@ -26,4 +26,8 @@ class Step < ApplicationRecord
   has_many :step_students, dependent: :destroy
   has_many :students, through: :step_students
   belongs_to :course
+
+  def percentage
+    students.length / course.attendances.length * 100 if !course.attendances.empty?
+  end
 end
