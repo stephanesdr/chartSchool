@@ -1,0 +1,9 @@
+<h1>Mes cours</h1>
+
+<% @courses.each do |course| %>
+
+  <% if course.teacher == current_teacher %>
+    <p><%= course.title %></p>
+  <% end %>
+
+<% end %>

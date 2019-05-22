@@ -1,0 +1,9 @@
+<h1>Mes cours</h1>
+
+<% @courses.each do |course| %>
+
+  <% if course.attendances.find_by(student_id: current_student.id) %>
+    <p><%= course.title %> par <%= course.teacher.name %></p>
+  <% end %>
+
+<% end %>
