@@ -24,4 +24,9 @@
 class Attendance < ApplicationRecord
   belongs_to :student
   belongs_to :course
+  after_create :invitation_send
+
+  def invitation_send
+    StudentMailer.invitation(self).deliver_now
+  end
 end
