@@ -53,18 +53,18 @@ class Student < ApplicationRecord
   def archived_courses
     archived = []
     courses.each do |course|
-      if course.end_time < Time.zone.now
-        archived << course
-      end
+      next unless course.end_time < Time.zone.now
+
+      archived << course
     end
   end
 
   def pending_courses
     pending = []
     courses.each do |course|
-      if course.end_time > Time.zone.now
-        pending << course
-      end
+      next unless course.end_time > Time.zone.now
+
+      pending << course
     end
   end
 end
