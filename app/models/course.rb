@@ -24,6 +24,7 @@ class Course < ApplicationRecord
   has_many :students, through: :attendances
   belongs_to :teacher
   has_many :general_questions, dependent: :destroy
+  has_many :pending_attendances, dependent: :destroy
 
   validates :title, presence: true
   validate :date_cannot_be_in_the_past
