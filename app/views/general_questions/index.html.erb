@@ -1,12 +1,20 @@
+
 <%@questions.each do |question|%>
 ID : #<%= question.id %>
+<br>
 <u><%= question.title %></u>
 <br>
+<% if question.description.present? %>
 <%= question.description %>
 <br>
-<%= question.general_question_votes.count %> votes
+<%end%>
+<%= question.general_question_votes.count %> vote<% if question.general_question_votes.count > 1 %>s<%end%>
 <br>
-<%= link_to "Voter", "#", method: :post %>
+<% if !GeneralQuestionVote.where(student_id: @student.id, general_question_id: question.id).exists? %>
+<%= link_to "Voter", course_general_question_general_question_votes_path(@course.id,question.id), method: :post %>
+<%elsif%>
+<%= link_to "Dévoter", course_general_question_vote_path(@course.id,question.id), method: :delete %>
+<% end%>
 <hr>
 <%end%>
 
