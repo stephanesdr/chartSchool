@@ -2,6 +2,21 @@
 <h2>Par <%= @course.teacher.name %> </h2>
 <p><%= @course.description %></p>
 <p><%= @course.resource %></p>
+<p><% @students.each do |student| %>
+  <%= student.name %>
+<%end%></p>
+
+Ajouter un élève :
+<%= form_tag url_for(course_attendances_path(@course.id)), multipart: true, method: "post" do %>
+
+
+
+        <%= label_tag "Email de l'élève" %><br>
+        <%= email_field_tag 'email', @email  %><br>
+
+        <%= submit_tag "Inviter" %>
+
+  <% end %>
 
 Add steps :
 <%= form_tag url_for(course_steps_path(@course.id)), multipart: true, method: "post" do %>
