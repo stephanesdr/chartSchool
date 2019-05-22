@@ -3,6 +3,8 @@
 class GeneralQuestionsController < ApplicationController
   def index
     # current_user = current_teacher || current_student
+    @student = current_student || Student.last
+    @course = Course.find(params[:course_id])
     @questions = GeneralQuestion.where(course_id: params[:course_id])
   end
 

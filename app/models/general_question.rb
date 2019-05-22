@@ -30,5 +30,5 @@ class GeneralQuestion < ApplicationRecord
   has_many :general_question_votes, dependent: :destroy
 
   validates :title, presence: true, uniqueness: true
-  validates :description, presence: true
+  validates :description, presence: false
 end
