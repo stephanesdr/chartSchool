@@ -1,7 +1,7 @@
+<%= link_to "Accueil", root_path %> <br>
+
 <% if current_teacher %>
   <%= render "teacher_index" %>
 <% elsif current_student %>
   <%= render "student_index" %>
 <% end %>
-
-<%= link_to "Accueil", root_path %>
