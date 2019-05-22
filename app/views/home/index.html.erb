@@ -23,9 +23,7 @@
       <% end %>
     </li>
     <li>
-      <% if student_signed_in? %>
-        <%= link_to "Mes cours", courses_path %>
-      <% else %>
+      <% if student_signed_in? || teacher_signed_in? %>
         <%= link_to "Mes cours", courses_path %>
       <% end %>
     </li>
