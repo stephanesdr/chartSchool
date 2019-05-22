@@ -41,4 +41,22 @@ class Teacher < ApplicationRecord
             }
   validates :name, presence: true
   has_many :courses, dependent: :destroy
+
+  def archived_courses
+    archived = []
+    courses.each do |course|
+      next unless course.end_time < Time.zone.now
+
+      archived << course
+    end
+  end
+
+  def pending_courses
+    pending = []
+    courses.each do |course|
+      next unless course.end_time > Time.zone.now
+
+      pending << course
+    end
+  end
 end
