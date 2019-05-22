@@ -22,4 +22,14 @@ class CoursesController < ApplicationController
     @steps = @course.steps
     @students = @course.students
   end
+
+  def index
+    @courses = Course.all
+
+    return @archived_courses = current_teacher.archived_courses if current_teacher
+    return @pending_courses = current_teacher.pending_courses if current_teacher
+
+    return @archived_courses = current_student.archived_courses if current_student
+    return @pending_courses = current_student.pending_courses if current_student
+  end
 end

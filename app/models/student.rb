@@ -51,6 +51,24 @@ class Student < ApplicationRecord
             }
   validates :name, presence: true
 
+  def archived_courses
+    archived = []
+    courses.each do |course|
+      next unless course.end_time < Time.zone.now
+
+      archived << course
+    end
+  end
+
+  def pending_courses
+    pending = []
+    courses.each do |course|
+      next unless course.end_time > Time.zone.now
+
+      pending << course
+    end
+  end
+
   def pending_attendances?
     return unless PendingAttendance.where(email: email).exists?
 
