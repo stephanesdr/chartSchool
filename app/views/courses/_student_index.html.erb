@@ -1,9 +1,49 @@
-<h1>Mes cours</h1>
+<h1>Mes cours à venir</h1>
 
-<% @courses.each do |course| %>
+<% if current_student.attendances.count > 0 %>
+<table style="width:100%">
+  <tr>
+    <th>Titre</th>
+    <th>Enseignant</th>
+    <th>Date</th>
+  </tr>
 
-  <% if course.attendances.find_by(student_id: current_student.id) %>
-    <p><%= course.title %> par <%= course.teacher.name %></p>
+  <% current_student.attendances.each do |attendance| %>
+    <% if attendance.course.end_time < Time.zone.now %>
+    <tr>
+      <td><%= attendance.course.title %></td>
+      <td><%= attendance.course.teacher.name %></td>
+      <td><%= attendance.course.start_time %></td>
+    </tr>
+    <% end %>
   <% end %>
 
+<% else %>
+  <p>Tu n'as aucun cours à suivre</p>
 <% end %>
+</table>
+
+<h1>Mes cours passés</h1>
+
+<% if current_student.attendances.count > 0 %>
+<table style="width:100%">
+  <tr>
+    <th>Titre</th>
+    <th>Enseignant</th>
+    <th>Date</th>
+  </tr>
+
+  <% current_student.attendances.each do |attendance| %>
+    <% if attendance.course.end_time > Time.zone.now %>
+    <tr>
+      <td><%= attendance.course.title %></td>
+      <td><%= attendance.course.teacher.name %></td>
+      <td><%= attendance.course.start_time %></td>
+    </tr>
+    <% end %>
+  <% end %>
+
+<% else %>
+  <p>Tu n'as aucun cours archivé</p>
+<% end %>
+</table>

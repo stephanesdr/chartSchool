@@ -1,9 +1,39 @@
-<h1>Mes cours</h1>
+<h1>Mes cours à venir</h1>
 
-<% @courses.each do |course| %>
+<table style="width:100%">
+  <tr>
+    <th>Titre</th>
+    <th>Date</th>
+  </tr>
 
-  <% if course.teacher == current_teacher %>
-    <p><%= course.title %></p>
+  <% @courses.each do |course| %>
+
+    <% if course.teacher == current_teacher && course.end_time < Time.zone.now %>
+    <tr>
+      <td><%= course.title %></td>
+      <td><%= course.start_time %></td>
+    </tr>
+
+    <% end %>
   <% end %>
+</table>
 
-<% end %>
+<h1>Mes cours passés</h1>
+
+<table style="width:100%">
+  <tr>
+    <th>Titre</th>
+    <th>Date</th>
+  </tr>
+
+  <% @courses.each do |course| %>
+
+    <% if course.teacher == current_teacher && course.end_time > Time.zone.now %>
+    <tr>
+      <td><%= course.title %></td>
+      <td><%= course.start_time %></td>
+    </tr>
+
+    <% end %>
+  <% end %>
+</table>
