@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+
+.alert { position : absolute;}
+
+#bad-alert { background-color: rgb(245, 174, 67);}
