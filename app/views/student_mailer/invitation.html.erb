@@ -1,0 +1,5 @@
+<h1>Bonjour <%=@student.name%> ! </h1>
+
+<p>Vous avez été invité à suivre le cours de <%= @teacher.name %> : <%= @course.title %>.</p>
+
+<p>Merci de rejoindre le cours en cliquant <%=link_to("ICI", course_url(@course.id)) %></p>

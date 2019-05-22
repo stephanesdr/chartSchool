@@ -20,5 +20,10 @@
 #
 
 class PendingAttendance < ApplicationRecord
+  after_create :unregistered_invitation_send
   belongs_to :course
+
+  def unregistered_invitation_send
+    StudentMailer.unregistered_invitation(self).deliver_now
+  end
 end
