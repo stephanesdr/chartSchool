@@ -21,4 +21,8 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @steps = @course.steps
   end
+
+  def index
+    @courses = Course.all
+  end
 end
