@@ -27,6 +27,7 @@
 class Student < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  after_create :pending_attendances?
 
   has_many :attendances, dependent: :destroy
   has_many :courses, through: :attendances
@@ -65,6 +66,15 @@ class Student < ApplicationRecord
       next unless course.end_time > Time.zone.now
 
       pending << course
+    end
+  end
+
+  def pending_attendances?
+    return unless PendingAttendance.where(email: email).exists?
+
+    PendingAttendance.where(email: email).find_each do |pending|
+      Attendance.create(student: self, course: pending.course)
+      pending.destroy
     end
   end
 end
