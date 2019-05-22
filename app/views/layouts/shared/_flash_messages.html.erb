@@ -1,0 +1,15 @@
+<% if notice %>
+	<div class="col-12 p-0">
+		<div id="good-alert" class='alert alert-info rounded'>
+			<%= flash[:notice] %>
+		</div>
+	</div>
+<% end %>
+
+<% if alert %>
+	<div class="col-12 p-0">
+		<div id="bad-alert" class='alert danger-alert-info rounded'>
+			<%= flash[:alert] %>
+		</div>
+	</div>
+<% end %>
