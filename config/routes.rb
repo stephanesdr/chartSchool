@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'home#index'
   devise_for :students, path: 'students', :controllers => { sessions: "students/sessions",
                                                             registrations: "students/registrations" }
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
     resources :steps, only: %i[create] do
       resources :steps_students, only: %i[create destroy]
     end
+    resources :general_questions, only: %i[new create index show destroy]
   end
 
 end
