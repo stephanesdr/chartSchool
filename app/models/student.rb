@@ -49,4 +49,22 @@ class Student < ApplicationRecord
               with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "Email not valid"
             }
   validates :name, presence: true
+
+  def archived_courses
+    archived = []
+    courses.each do |course|
+      if course.end_time < Time.zone.now
+        archived << course
+      end
+    end
+  end
+
+  def pending_courses
+    pending = []
+    courses.each do |course|
+      if course.end_time > Time.zone.now
+        pending << course
+      end
+    end
+  end
 end

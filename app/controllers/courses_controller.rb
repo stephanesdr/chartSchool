@@ -24,5 +24,15 @@ class CoursesController < ApplicationController
 
   def index
     @courses = Course.all
+
+    return unless current_teacher
+
+    @archived_courses = current_teacher.archived_courses
+    @pending_courses = current_teacher.pending_courses
+
+    return unless current_student
+
+    @archived_courses = current_student.archived_courses
+    @pending_courses = current_student.pending_courses
   end
 end
