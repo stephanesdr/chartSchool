@@ -10,11 +10,11 @@
   </head>
 
   <body>
-  <%= render "header" %>
-   <%= render "sidebar" %>
+  <%= render "layouts/header" %>
+   <%= render "layouts/sidebar" %>
        <main>
          <%= yield %>
        </main>
-    <%= render "footer" %>
+    <%= render "layouts/footer" %>
   </body>
 </html>
