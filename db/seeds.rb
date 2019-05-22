@@ -21,6 +21,14 @@ require 'faker'
   p "Teacher #{i} : créé"
 end
 
+Teacher.create!(
+  name: "Latouche",
+  email: "latouche@yopmail.com",
+  password: "000000",
+  confirmed_at: Time.zone.now
+)
+p "* Teacher Latouche : créé"
+
 1.upto(10) do |i|
   name = Faker::Name.unique.name
   Student.create!(
@@ -31,6 +39,14 @@ end
   )
   p "Student #{i} : créé"
 end
+
+Student.create!(
+  name: "Ducobu",
+  email: "ducobu@yopmail.com",
+  password: "000000",
+  confirmed_at: Time.zone.now
+)
+p "* Student Ducobu : créé"
 
 1.upto(50) do |i|
   Course.create!(
