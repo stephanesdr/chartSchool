@@ -10,20 +10,20 @@
 
 require 'faker'
 
-# unless Teacher.find_by(email: "teacher@email.com")
+# unless Teacher.find_by(email: "teacher@yopmail.com")
 #   Teacher.create!(
 #     name: "teacher",
-#     email: "teacher@email.com",
-#     password: "password",
+#     email: "teacher@yopmail.com",
+#     password: "000000",
 #     confirmed_at: Time.zone.now
 #   )
 # end
 #
-# unless Student.find_by(email: "student@email.com")
+# unless Student.find_by(email: "student@yopmail.com")
 #   Student.create!(
 #     name: "student",
-#     email: "student@email.com",
-#     password: "password",
+#     email: "student@yopmail.com",
+#     password: "000000",
 #     confirmed_at: Time.zone.now
 #   )
 # end

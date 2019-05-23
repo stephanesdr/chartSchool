@@ -11,7 +11,7 @@ File.read('./.ruby-version')
 gem 'dotenv-rails', groups: %i[development test]
 
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
+gem 'bootstrap', '~> 4.3.1'
 gem 'coffee-rails', '~> 4.2'
 gem "devise", ">= 4.6.0"
 gem 'faker', '~> 1.8', '>= 1.8.7'

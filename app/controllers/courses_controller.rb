@@ -27,6 +27,10 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @steps = @course.steps
     @students = @course.students
+
+    @questions = GeneralQuestion.where(course_id: @course.id)
+    @teacher = current_teacher # || Teacher.last
+    @student = current_student # || Student.last
   end
 
   def index

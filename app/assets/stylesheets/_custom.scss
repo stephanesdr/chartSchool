@@ -1,0 +1,31 @@
+$violet: #653CEF;
+$blue: #38D9D3;
+$red: #FF7285;
+$yellow: #FFCA83;
+
+$dark-violet: #464B72;
+$dark-grey: #707070;
+$light-grey: #9A9A9A;
+
+
+/* Colors classes */
+
+.color-primary { color: $violet; }
+.color-secondary { color: $blue; }
+.color-warning { color: $red; }
+.color-info { color: $yellow; }
+
+.grey-primary { color: $dark-violet; }
+.grey-dark { color: $dark-grey; }
+.grey-light { color: $light-grey; }
+
+/* Background colors classes */
+
+.bg--primary { background-color:  $violet; }
+.bg--secondary { background-color:  $blue; }
+.bg--warning { background-color:  $red; }
+.bg--info { background-color:  $yellow; }
+
+.bg-grey-primary { background-color:  $dark-violet; }
+.bg-grey-dark { background-color:  $dark-grey; }
+.bg-grey-light { background-color:  $light-grey; }
