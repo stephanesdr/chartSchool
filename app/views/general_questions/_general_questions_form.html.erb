@@ -1,6 +1,7 @@
-<h3>POSER UNE QUESTION</h3>
+
 
 <% if @student %>
+<h3>POSER UNE QUESTION</h3>
   <%= form_tag url_for(controller: 'general_questions', action: 'create'), multipart: true, method: "post" do %>
 
           <%= hidden_field_tag :course_id , params[:id] %>
