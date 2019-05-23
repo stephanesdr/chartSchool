@@ -6,8 +6,7 @@ $font-family-mono: "IBM Plex Mono", monospace;
 
 $small-screen: (max-width: 700);
 
-@import "structure/prism";
-@import "structure/callouts";
+
 @import "structure/typography";
 @import "structure/layout";
 
@@ -38,7 +37,7 @@ body {
     color: white;
     text-decoration: underline;
   }
-  @media #{$small-screen} {
+  @media (max-width: 699.98px) {
     padding: 2rem; 
   }
 }
@@ -54,7 +53,7 @@ body {
     height: 100px;
     margin: 0 auto;
   }
-  @media #{$small-screen} {
+  @media (max-width: 699.98px) {
     svg {
       display: none;
     }
@@ -120,7 +119,7 @@ h2 {
     flex-direction: column;
     height: calc(100vh - 60px);
   }
-  @media #{$small-screen} {
+  @media (max-width: 699.98px) {
     .just-nav {
       position: fixed;
       top: 0;
@@ -150,7 +149,7 @@ h2 {
   top: 0;
   left: 0;
   z-index: 2;
-  @media #{$small-screen} {
+  @media (max-width: 699.98px) {
     display: block;
   }
 }
@@ -173,7 +172,7 @@ h2 {
     position: relative;
     top: -1px;
   }
-  @media #{$small-screen} {
+  @media (max-width: 699.98px) {
     margin-top: 1rem;
   }
 }

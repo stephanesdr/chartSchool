@@ -1,3 +1,4 @@
+
 body {
     margin: 0;
     // height: 100vh;
@@ -15,7 +16,7 @@ body {
     4└─┴────┘
     */
     
-    @media #{$small-screen} {
+    @media (max-width: 699.98px) {
        grid-template-columns: 40px 1fr;
     }
   }
@@ -57,7 +58,7 @@ body {
         display: block;
       }
     }
-    @media #{$small-screen} {
+    @media (max-width: 699.98px) {
       display: block; 
       padding-bottom: 2rem;
       > div {
