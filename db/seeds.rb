@@ -93,10 +93,14 @@ require 'faker'
 # # __________JUNCTION TABLE SEEDS______________
 #
 # 1.upto(100) do |i|
+#   courseid = Course.all.sample.id
+#   studentid = Student.all.sample.id
+#   unless Attendance.find_by(course_id: courseid, student_id: studentid)
 #   Attendance.create!(
-#     student_id: Student.all.sample.id,
-#     course_id: Course.all.sample.id
+#     student_id: studentid,
+#     course_id: courseid
 #   )
+#   end
 #   p "Attendance #{i} : créé"
 # end
 #
@@ -116,11 +120,15 @@ require 'faker'
 #   p "GroupTeacher #{i} : créé"
 # end
 #
-# 1.upto(100) do |i|
-#   StepStudent.create!(
-#     step_id: Step.all.sample.id,
-#     student_id: Student.all.sample.id
-#   )
+# 1.upto(500) do |i|
+#   stepid = Step.all.sample.id
+#   studentid = Student.all.sample.id
+#   unless StepStudent.find_by(step_id: stepid, student_id: studentid)
+#     StepStudent.create!(
+#       step_id: stepid ,
+#       student_id: studentid
+#     )
+#   end
 #   p "ChekStep #{i} : créé"
 # end
 #
