@@ -1,2 +1,33 @@
+@import "bootstrap/mixins";
 @import "bootstrap";
-@import "style";
+
+$main-sm-columns: 12;
+$sidebar-sm-columns: 4;
+.main {
+ @include make-col-ready;
+ @include media-breakpoint-up(md) {
+ @include make-col($main-sm-columns);
+
+.sidebar-primary & {
+ width: calc(100% - 330px);
+ max-width: calc(100% - 330px) !important;
+@include make-col($main-sm-columns - $sidebar-sm-columns);
+ }
+ }
+}
+
+.sidebar {
+ @include make-col-ready;
+ @include media-breakpoint-up(md) {
+ @include make-col($sidebar-sm-columns);
+
+min-width: 330px;
+ max-width: 330px;
+ }
+}
+
+.sidebar-primary {
+ .content {
+ @include make-row;
+ }
+}

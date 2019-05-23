@@ -9,13 +9,10 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-  <%= render "layouts/header" %>
-   <%= render "layouts/sidebar" %>
-       <main>
-         <%= yield %>
-       </main>
-    <%= render "layouts/footer" %>
-    
-  </body>
+<body class="sidebar-prymary">
+<div class="content">
+<main><%= yield %></main>
+<aside class="sidebar">Barre latérale</aside>
+</div>
+</body>
 </html>
