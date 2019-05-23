@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class GeneralQuestionsController < ApplicationController
-  def index
-    # current_user = current_teacher || current_student
-    @teacher = current_teacher # || Teacher.last
-    @student = current_student # || Student.last
-    @course = Course.find(params[:course_id])
-    @questions = GeneralQuestion.where(course_id: params[:course_id])
-  end
+  # def index
+  #   # current_user = current_teacher || current_student
+  #   @teacher = current_teacher # || Teacher.last
+  #   @student = current_student # || Student.last
+  #   @course = Course.find(params[:course_id])
+  #   @questions = GeneralQuestion.where(course_id: params[:course_id])
+  # end
 
   def new; end
 
