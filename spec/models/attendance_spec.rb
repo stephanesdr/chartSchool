@@ -12,6 +12,7 @@
 #
 # Indexes
 #
+#  by_course_and_student            (course_id,student_id) UNIQUE
 #  index_attendances_on_course_id   (course_id)
 #  index_attendances_on_student_id  (student_id)
 #

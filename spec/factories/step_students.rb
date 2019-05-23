@@ -12,6 +12,7 @@
 #
 # Indexes
 #
+#  by_step_and_student                (step_id,student_id) UNIQUE
 #  index_step_students_on_step_id     (step_id)
 #  index_step_students_on_student_id  (student_id)
 #
