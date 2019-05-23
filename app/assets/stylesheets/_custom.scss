@@ -1,7 +1,83 @@
+/* FONTS */ 
+
+/* SourceSansPro */
+@font-face {
+    font-family: 'Source';
+    src: url('Source/SourceSansPro-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    }
+@font-face {
+    font-family: 'Source';
+    src: url('Source/SourceSansPro-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    }
+@font-face {
+    font-family: 'Source';
+    src: url('Source/SourceSansPro-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    }
+@font-face {
+    font-family: 'Source';
+    src: url('Source/SourceSansPro-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    }
+@font-face {
+    font-family: 'Source';
+    src: url('Source/SourceSansPro-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    }
+@font-face {
+    font-family: 'Source';
+    src: url('Source/SourceSansPro-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    }
+    
+
+$f-xlight: 200;
+$f-light: 300;
+$f-regular: 400;
+$f-semi-bold: 600;
+$f-bold: 700;
+$f-black: 900;
+
+$font-source: 'Source', sans-serif;
+
+$f-size-1: 3rem;
+$f-size-2: 2.3rem;
+$f-size-3: 1.6rem;
+$f-size-4: 1.05rem;
+$f-size-5: 0.8rem;
+
+.f-xlight {font-weight: $f-xlight;}
+.f-light {font-weight: $f-light;}
+.f-regular {font-weight: $f-regular;}
+.f-semibold {font-weight: $f-semi-bold;}
+.f-bold {font-weight: $f-bold;}
+.f-black {font-weight: $f-black;}
+
+.font-primary {font-family: $font-source;}
+
+.f-size-1{ font-size: $f-size-1 }
+.f-size-2{ font-size: $f-size-2 }
+.f-size-3{ font-size: $f-size-3 }
+.f-size-4{ font-size: $f-size-4 }
+.f-size-5{ font-size: $f-size-5 }
+
+
+
+/* COLORS */
+
 $violet: #653CEF;
 $blue: #38D9D3;
 $red: #FF7285;
 $yellow: #FFCA83;
+$white: white;
 
 $dark-violet: #464B72;
 $dark-grey: #707070;
@@ -10,22 +86,23 @@ $light-grey: #9A9A9A;
 
 /* Colors classes */
 
-.color-primary { color: $violet; }
-.color-secondary { color: $blue; }
-.color-warning { color: $red; }
-.color-info { color: $yellow; }
+.color-primary { color: $violet !important; }
+.color-secondary { color: $blue !important; }
+.color-warning { color: $red !important; }
+.color-info { color: $yellow !important; }
+.color-w { color: $white !important; }
 
-.grey-primary { color: $dark-violet; }
-.grey-dark { color: $dark-grey; }
-.grey-light { color: $light-grey; }
+.grey-primary { color: $dark-violet !important; }
+.grey-dark { color: $dark-grey !important; }
+.grey-light { color: $light-grey !important; }
 
 /* Background colors classes */
 
-.bg--primary { background-color:  $violet; }
-.bg--secondary { background-color:  $blue; }
-.bg--warning { background-color:  $red; }
-.bg--info { background-color:  $yellow; }
+.bg--primary { background-color:  $violet !important; }
+.bg--secondary { background-color:  $blue !important; }
+.bg--warning { background-color:  $red !important; }
+.bg--info { background-color:  $yellow !important; }
 
-.bg-grey-primary { background-color:  $dark-violet; }
-.bg-grey-dark { background-color:  $dark-grey; }
-.bg-grey-light { background-color:  $light-grey; }
+.bg-grey-primary { background-color:  $dark-violet !important; }
+.bg-grey-dark { background-color:  $dark-grey !important; }
+.bg-grey-light { background-color:  $light-grey !important; }
