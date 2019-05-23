@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class StudentMailer < ApplicationMailer
-  default from: 'no-reply@chartschool.fr'
+  default from: 'info.chartschool@gmail.com'
 
   def invitation(attendance)
     @student = attendance.student
