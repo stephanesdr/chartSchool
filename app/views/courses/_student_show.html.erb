@@ -14,5 +14,7 @@
 <%= link_to("✓", course_step_steps_students_path(@course.id, step.id), method: :post) %>
 <% end %>
 <%= step.percentage %>% des étudiants ont fini cette étape
+<%  step.percentage.to_i > 100 ? x = 1 : x = (step.percentage.to_f / 100).to_f %>
+<%= progress_bar x , label: true, style: 'min-width: 20px' %>
 <br>
 <% end %>
