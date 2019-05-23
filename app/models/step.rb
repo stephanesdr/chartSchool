@@ -28,6 +28,6 @@ class Step < ApplicationRecord
   belongs_to :course
 
   def percentage
-    students.length / course.attendances.length * 100 if !course.attendances.empty?
+    (students.length.to_f / course.attendances.length.to_f * 100).round(2)
   end
 end
