@@ -1,4 +1,5 @@
 <br>
+<% if @questions.present?%>
 <h3>QUESTIONS GENERALES</h3>
 <%@questions.each do |question|%>
 ID : #<%= question.id %>
@@ -37,4 +38,5 @@ ID : #<%= question.id %>
 <% end%>
 
 <hr>
+<%end%>
 <%end%>
