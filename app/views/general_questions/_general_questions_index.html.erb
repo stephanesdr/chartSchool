@@ -1,0 +1,34 @@
+<br>
+<h3>QUESTIONS GENERALES</h3>
+<%@questions.each do |question|%>
+ID : #<%= question.id %>
+<br>
+<u><%= question.title %></u>
+
+<br>
+<% if question.description.present? %>
+  <%= question.description %>
+  <br>
+<%end%>
+
+<%= question.general_question_votes.count %> vote<% if question.general_question_votes.count > 1 %>s<%end%>
+<br>
+<% if @student %>
+  <% @student_vote = GeneralQuestionVote.where(student_id: @student.id, general_question_id: question.id)[0] %>
+  <% if !@student_vote.present? %>
+    <%= link_to "Voter", general_question_general_question_votes_path(question.id), method: :post %>
+  <%elsif%>
+    <%= link_to "Dévoter", general_question_vote_path(question.id), method: :delete %>
+  <% end%>
+<% end%>
+
+<% if @teacher %>
+  <%= form_for(question  ,url: general_question_path(question.id)) do |f| %>
+    <%= label_tag 'validation' %>
+    <%= hidden_field_tag 'teacher_check', false %>
+    <%= check_box_tag "teacher_check" ,{} ,question.teacher_check , onchange: 'this.form.submit();' %>
+  <% end%>
+<% end%>
+
+<hr>
+<%end%>

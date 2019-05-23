@@ -7,15 +7,19 @@ Rails.application.routes.draw do
                                                             registrations: "teachers/registrations" }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+
+  resources :general_question_votes, only: %i[destroy ]
+  resources :general_questions, only: %i[new create index update show destroy] do
+    resources :general_question_votes, only: %i[create]
+  end
+
+  
   resources :courses, only: %i[new create show index] do
     resources :attendances, only: %i[create]
     resources :steps, only: %i[create] do
       resources :steps_students, only: %i[create destroy]
     end
-    resources :general_question_votes, only: %i[destroy ]
-    resources :general_questions, only: %i[new create index update show destroy] do
-      resources :general_question_votes, only: %i[create]
-    end
+
 
   end
 
