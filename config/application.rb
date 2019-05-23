@@ -21,6 +21,8 @@ module ChartSchool
       generators.controller_specs false
       generators.model_specs false
     end
+    
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
