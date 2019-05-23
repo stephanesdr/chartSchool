@@ -9,10 +9,31 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-<body class="sidebar-prymary">
-<div class="content">
-<main><%= yield %></main>
-<aside class="sidebar">Barre latérale</aside>
-</div>
+<body>
+     <%= render "layouts/navbar" %>
+
+<div id="wrapper" class= "py-5">
+    <%= render "layouts/sidebar" %>
+       
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+            
+                       <%= yield %>
+
+                    </div>
+                </div>
+            </div>
+         </div>
+
+    </div>
+<script>
+$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+});
+  </script>
 </body>
+
 </html>
