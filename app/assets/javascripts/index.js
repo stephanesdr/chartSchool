@@ -50,7 +50,12 @@
     }
     
     function doMobileSidebar() {
-      let hamburgerButton = document.querySelector("#hamburger");
+        var parentElement = document.getElementById(id);
+        if (parentElement != null) {
+            var receivedElement = parentElement.querySelector('#hamburger');
+        }
+      let hamburgerButton = document.body.querySelector("#hamburger");
+      console.log(receivedElement);
       // let sidebarNav = document.querySelector("#sidebar-nav");
       hamburgerButton.addEventListener("click", event => {
         event.preventDefault;
