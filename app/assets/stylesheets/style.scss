@@ -2,6 +2,7 @@
 
 
 #wrapper {
+  margin-top: 105px; 
   padding-left: 0;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -14,7 +15,7 @@
 }
 
 #sidebar-wrapper {
-  z-index: 1000;
+  
   position: fixed;
   left: 250px;
   width: 0;
@@ -50,7 +51,7 @@
   top: 0;
   width: 250px;
   margin: 0;
-  padding: 0;
+  padding: 20px;
   list-style: none;
 }
 
