@@ -12,14 +12,24 @@
 #  title       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  teacher_id  :bigint
+#
+# Indexes
+#
+#  index_courses_on_teacher_id  (teacher_id)
 #
 
 class Course < ApplicationRecord
   has_many :attendances, dependent: :destroy
   has_many :students, through: :attendances
+  belongs_to :teacher
+  has_many :general_questions, dependent: :destroy
+  has_many :pending_attendances, dependent: :destroy
 
   validates :title, presence: true
   validate :date_cannot_be_in_the_past
+
+  has_many :steps, dependent: :destroy
 
   def date_cannot_be_in_the_past
     if end_time.present? && end_time < Time.zone.today

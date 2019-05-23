@@ -1,0 +1,18 @@
+<h1><%= @course.title %></h1>
+<h2>Par <%= @course.teacher.name %> </h2>
+<p><%= @course.description %></p>
+<p><%= @course.resource %></p>
+
+
+<% @steps.each do |step| %>
+<%= step.title %>
+<%= step.description %>
+
+<% if step.students.where(id: current_student.id).exists? %>
+ vous avez validé cette étape <%= link_to("✗", course_step_steps_student_path(@course.id, step.id, StepStudent.find_by(student: current_student, step: step)), method: :delete) %>
+<% else %>
+<%= link_to("✓", course_step_steps_students_path(@course.id, step.id), method: :post) %>
+<% end %>
+<%= step.percentage %>% des étudiants ont fini cette étape
+<br>
+<% end %>

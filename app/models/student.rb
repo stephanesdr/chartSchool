@@ -27,11 +27,19 @@
 class Student < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  after_create :pending_attendances?
 
   has_many :attendances, dependent: :destroy
   has_many :courses, through: :attendances
+
+  has_many :general_questions, dependent: :destroy
+
   has_many :group_students, dependent: :destroy
   has_many :groups, through: :group_students
+
+  has_many :step_students, dependent: :destroy
+  has_many :steps, through: :step_students
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -42,4 +50,31 @@ class Student < ApplicationRecord
               with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "Email not valid"
             }
   validates :name, presence: true
+
+  def archived_courses
+    archived = []
+    courses.each do |course|
+      next unless course.end_time < Time.zone.now
+
+      archived << course
+    end
+  end
+
+  def pending_courses
+    pending = []
+    courses.each do |course|
+      next unless course.end_time > Time.zone.now
+
+      pending << course
+    end
+  end
+
+  def pending_attendances?
+    return unless PendingAttendance.where(email: email).exists?
+
+    PendingAttendance.where(email: email).find_each do |pending|
+      Attendance.create(student: self, course: pending.course)
+      pending.destroy
+    end
+  end
 end

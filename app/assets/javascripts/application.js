@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require jquery
 //= require activestorage
 //= require turbolinks
 //= require jquery3
@@ -19,12 +20,8 @@
 //= require_tree .
 
 
-  
-$(function () {
-
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    
+$(document).ready(function(){
+    setTimeout(function(){
+    $('.alert').fadeOut();
+    }, 2000);
 })

@@ -1,0 +1,55 @@
+
+<%@questions.each do |question|%>
+ID : #<%= question.id %>
+<br>
+<u><%= question.title %></u>
+
+<br>
+<% if question.description.present? %>
+  <%= question.description %>
+  <br>
+<%end%>
+
+<%= question.general_question_votes.count %> vote<% if question.general_question_votes.count > 1 %>s<%end%>
+<br>
+<% if @student %>
+  <% if !GeneralQuestionVote.where(student_id: @student.id, general_question_id: question.id).exists? %>
+    <%= link_to "Voter", course_general_question_general_question_votes_path(@course.id,question.id), method: :post %>
+  <%elsif%>
+    <%= link_to "Dévoter", course_general_question_vote_path(@course.id,question.id), method: :delete %>
+  <% end%>
+<% end%>
+
+<% if @teacher %>
+  <%= form_for(question  ,url: course_general_question_path(@course.id,question.id)) do |f| %>
+    <%= label_tag 'validation' %>
+    <%= hidden_field_tag 'teacher_check', false %>
+    <%= check_box_tag "teacher_check" ,{} ,question.teacher_check , onchange: 'this.form.submit();' %>
+  <% end%>
+<% end%>
+
+<hr>
+<%end%>
+
+
+<!-- ASKING QUESTION PARTIAL -->
+
+<% if @student %>
+  <%= form_tag url_for(action: 'create'), multipart: true, method: "post" do %>
+
+					<div class="form-group">
+						<%= label_tag 'Titre', nil, class:"" %>
+						<%= text_field_tag 'title', @title, class: "form-control "  %>
+					</div>
+
+					<div class="form-group">
+						<%= label_tag 'Description', nil, class:"" %>
+						<%= text_area_tag 'description', @description, class: "form-control "  %>
+					</div>
+
+					<br>
+					<div class="form-group">
+						<%= submit_tag "Poser la question", class: 'btn btn-lg' %>
+					</div>
+  <% end %>
+<% end %>

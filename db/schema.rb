@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_21_114910) do
+ActiveRecord::Schema.define(version: 2019_05_22_131050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,29 @@ ActiveRecord::Schema.define(version: 2019_05_21_114910) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "teacher_id"
+    t.index ["teacher_id"], name: "index_courses_on_teacher_id"
+  end
+
+  create_table "general_question_votes", force: :cascade do |t|
+    t.bigint "general_question_id"
+    t.bigint "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["general_question_id"], name: "index_general_question_votes_on_general_question_id"
+    t.index ["student_id"], name: "index_general_question_votes_on_student_id"
+  end
+
+  create_table "general_questions", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.boolean "teacher_check", default: false
+    t.bigint "student_id"
+    t.bigint "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_general_questions_on_course_id"
+    t.index ["student_id"], name: "index_general_questions_on_student_id"
   end
 
   create_table "group_students", force: :cascade do |t|
@@ -56,6 +79,33 @@ ActiveRecord::Schema.define(version: 2019_05_21_114910) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "pending_attendances", force: :cascade do |t|
+    t.string "email"
+    t.bigint "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_pending_attendances_on_course_id"
+  end
+
+  create_table "step_students", force: :cascade do |t|
+    t.bigint "student_id"
+    t.bigint "step_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["step_id"], name: "index_step_students_on_step_id"
+    t.index ["student_id"], name: "index_step_students_on_student_id"
+  end
+
+  create_table "steps", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.boolean "teacher_check", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "course_id"
+    t.index ["course_id"], name: "index_steps_on_course_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -110,8 +160,16 @@ ActiveRecord::Schema.define(version: 2019_05_21_114910) do
 
   add_foreign_key "attendances", "courses"
   add_foreign_key "attendances", "students"
+  add_foreign_key "general_question_votes", "general_questions"
+  add_foreign_key "general_question_votes", "students"
+  add_foreign_key "general_questions", "courses"
+  add_foreign_key "general_questions", "students"
   add_foreign_key "group_students", "groups"
   add_foreign_key "group_students", "students"
   add_foreign_key "group_teachers", "groups"
   add_foreign_key "group_teachers", "teachers"
+  add_foreign_key "pending_attendances", "courses"
+  add_foreign_key "step_students", "steps"
+  add_foreign_key "step_students", "students"
+  add_foreign_key "steps", "courses"
 end
