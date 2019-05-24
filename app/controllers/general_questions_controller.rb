@@ -24,6 +24,7 @@ class GeneralQuestionsController < ApplicationController
       student_id: student.id
     )
     if question.save
+      GeneralQuestionVote.create(general_question: question, student: current_student)
     else
       flash[:notice] = "Il manque un titre à ta question."
     end
