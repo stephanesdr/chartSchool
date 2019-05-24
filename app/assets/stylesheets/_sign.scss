@@ -7,3 +7,60 @@
     padding: 0px;
     background-color: $dark-violet;
 }
+
+.row-start {
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+.card-start-left, 
+    .card-start-right {
+        border: none;
+        border-radius: 0rem;
+    }
+
+.card-start-right {
+    background: transparent;
+}
+
+.col-left, .col-right {
+    padding: 0px;
+    margin: 0px;
+}
+
+.tab-start > .active {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.logo { position: relative; top: 31%;}
+
+@include media-breakpoint-down(sm) {
+    
+    .logo {
+        top: 25px;
+    }
+
+    .f-size-1 {
+        font-size: 2.5em;
+    }
+
+    #logo_brand {
+        width: 135px;
+        height: 135px;
+    }
+
+    .col-left {
+      height: 40vh !important;
+    }
+
+    .col-right {
+        height: 60vh !important;
+    }
+    .card-start-right {
+        height: 100%;
+        background: white;
+    }
+  }
