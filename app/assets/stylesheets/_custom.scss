@@ -102,7 +102,56 @@ $light-grey: #9A9A9A;
 .bg--secondary { background-color:  $blue !important; }
 .bg--warning { background-color:  $red !important; }
 .bg--info { background-color:  $yellow !important; }
+.bg--white { background-color:  $white !important; }
 
 .bg-grey-primary { background-color:  $dark-violet !important; }
 .bg-grey-dark { background-color:  $dark-grey !important; }
 .bg-grey-light { background-color:  $light-grey !important; }
+
+
+
+
+/* BOOTSRAP KIT COMPONENTS */ 
+
+.btn-info {
+    color: $violet;
+    border-color: $violet;
+    border: 2px solid;
+    border-radius: 30px;
+    background-color: $white;
+    font-size: $f-size-4;
+    font-weight: $f-semi-bold;
+}
+
+.btn-info:focus, .btn-info.focus {
+    box-shadow: 0 0 0 0.35rem rgb(113, 255, 250);
+}
+.btn-info:hover {
+    color: #ffffff;
+    background-color: #38d9d3;
+    border-color: #38d9d3;
+}
+
+.btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active, .show > .btn-info.dropdown-toggle {
+    color: #fff;
+    background-color: #1faca7;
+    border-color: #15a19d;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #38d9d3;
+    background-color: transparent; 
+    border: 1px solid;
+}
+
+.nav-link {
+    display: block;
+    padding: 0.5rem 2rem;
+    /* margin: 0em 2em; */
+}
+
+a {
+    color: #38d9d3;
+    text-decoration: none;
+    background-color: transparent;
+}
