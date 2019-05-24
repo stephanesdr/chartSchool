@@ -1,7 +1,16 @@
 <br>
-<% if @questions.present?%>
+<div id="question_div">
+
+
 <h3>QUESTIONS GENERALES</h3>
+<br>
+<div id="question_container">
+
+<% if @questions.present?%>
 <%@questions.each do |question|%>
+<div id="question-card#<%=question.id%>" class="question-card" >
+
+
 ID : #<%= question.id %>
 <br>
 <u><%= question.title %></u>
@@ -17,7 +26,7 @@ ID : #<%= question.id %>
 <%end%>
 
 <br>
-<%= question.general_question_votes.count %> vote<% if question.general_question_votes.count > 1 %>s<%end%>
+<%= question.vote_number %> vote<% if question.vote_number > 1 %>s<%end%>
 <br>
 
 <% if @student %>
@@ -36,7 +45,12 @@ ID : #<%= question.id %>
     <%= check_box_tag "teacher_check" ,{} ,question.teacher_check , onchange: 'this.form.submit();' %>
   <% end%>
 <% end%>
-
+</div>
 <hr>
+
 <%end%>
 <%end%>
+</div>
+</div>
+
+<%= stylesheet_link_tag    "general_questions/_general_questions_index" %>

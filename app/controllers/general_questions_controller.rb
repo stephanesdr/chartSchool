@@ -17,25 +17,30 @@ class GeneralQuestionsController < ApplicationController
 
   def create
     student = current_student # || Student.last
-    question = GeneralQuestion.new(
+    @question = GeneralQuestion.new(
       title: params[:title],
       description: params[:description],
       course_id: params[:course_id],
       student_id: student.id
     )
-    if question.save
+    if @question.save
+      @general_question_votes = @question.general_question_votes.count
+      respond_to do |format|
+        format.js
+      end
     else
       flash[:notice] = "Il manque un titre à ta question."
     end
-    redirect_to request.referer
+    # redirect_to request.referer
   end
 
   def destroy
     @question = GeneralQuestion.find(params[:id])
 
-    return GeneralQuestionVote.where(general_question_id: @question.id).each { |vote| GeneralQuestionVote.delete(vote) } if @question.present?
-
-    GeneralQuestion.delete(@question)
-    redirect_to request.referer
+    if @question.present?
+      GeneralQuestionVote.where(general_question_id: @question.id).each { |vote| GeneralQuestionVote.delete(vote) }
+      GeneralQuestion.delete(@question)
+      # redirect_to request.referer
+    end
   end
 end

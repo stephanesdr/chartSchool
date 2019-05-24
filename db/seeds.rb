@@ -96,10 +96,10 @@ require 'faker'
 #   courseid = Course.all.sample.id
 #   studentid = Student.all.sample.id
 #   unless Attendance.find_by(course_id: courseid, student_id: studentid)
-#   Attendance.create!(
-#     student_id: studentid,
-#     course_id: courseid
-#   )
+#     Attendance.create!(
+#       student_id: studentid,
+#       course_id: courseid
+#     )
 #   end
 #   p "Attendance #{i} : créé"
 # end
@@ -125,7 +125,7 @@ require 'faker'
 #   studentid = Student.all.sample.id
 #   unless StepStudent.find_by(step_id: stepid, student_id: studentid)
 #     StepStudent.create!(
-#       step_id: stepid ,
+#       step_id: stepid,
 #       student_id: studentid
 #     )
 #   end

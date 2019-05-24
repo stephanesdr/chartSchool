@@ -31,4 +31,8 @@ class GeneralQuestion < ApplicationRecord
 
   validates :title, presence: true, uniqueness: true
   validates :description, presence: false
+
+  def vote_number
+    general_question_votes.count
+  end
 end

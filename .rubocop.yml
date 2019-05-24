@@ -25,6 +25,9 @@ Rails/Output:
 Style/DateTime:
   Enabled: true
 
+Style/GuardClause:
+  Enabled: false
+
 Metrics/LineLength:
   Max: 100
 
