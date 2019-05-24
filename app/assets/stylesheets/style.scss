@@ -1,5 +1,14 @@
 @import "custom";
+@import "sign";
 
+html, body {
+  font-family: $font-source;
+
+}
+
+a:hover {
+  text-decoration: none;
+}
 
 #wrapper {
   margin-top: 105px; 
@@ -15,7 +24,8 @@
 }
 
 #sidebar-wrapper {
-  
+  margin-top: 0px;
+  z-index: 9999;
   position: fixed;
   left: 250px;
   width: 0;
@@ -51,19 +61,21 @@
   top: 0;
   width: 250px;
   margin: 0;
-  padding: 20px;
+  padding: 0px;
+  padding-top: 20px;
   list-style: none;
 }
 
 .sidebar-nav li {
   text-indent: 20px;
   line-height: 40px;
+  padding-bottom: 10px;
 }
 
 .sidebar-nav li a {
   display: block;
   text-decoration: none;
-  color: #999999;
+  color: $white;
 }
 
 .sidebar-nav li a:hover {

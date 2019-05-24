@@ -1,28 +1,20 @@
 <!-- Sidebar -->
         <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
+            <ul class="sidebar-nav f-xlight">
 
                 <li>
-                    <a href="<%= courses_path %>">Vos cours</a>
+                    <%= link_to  "Dashboard", class: "" %>
                 </li>
                 <li>
-                    <a href="#">Shortcuts</a>
+                    <%= link_to  "Stream", class: "" %>
                 </li>
                 <li>
-                    <a href="#">Overview</a>
+                    <%= link_to "Incoming", courses_path, class: "" %>
                 </li>
                 <li>
-                    <a href="#">Events</a>
+                    <%= link_to  "Archives", class: "" %>
                 </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
+
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
