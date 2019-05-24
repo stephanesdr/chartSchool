@@ -1,6 +1,11 @@
-<div class="btn btn-info w-25 mx-auto py-3 my-3">
-    <%= link_to "Sign in", new_teacher_session_path %>
-</div>
-<div class="btn btn-info w-25 mx-auto py-3 my-3">
-    <%= link_to "Sign in", new_teacher_registration_path %>
-</div>
+<%= link_to(new_teacher_session_path) do %>
+  <div class="btn btn-info w-25 mx-auto py-3 my-3">
+	  Sign in
+  </div>
+<% end %>
+
+<%= link_to(new_teacher_registration_path) do %>
+  <div class="btn btn-info w-25 mx-auto py-3 my-3">
+    Sign up
+  </div>
+<% end %>
