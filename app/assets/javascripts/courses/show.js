@@ -91,4 +91,4 @@ function questionCount(questions)
    // console.log("initialQuestionsCount ->" + initialQuestionsCount);
 }
 
-gon.watch( "questions" , {interval: 1000},  questionCount );
+gon.watch( "questions" , {interval: 1000},  getQuestions );
