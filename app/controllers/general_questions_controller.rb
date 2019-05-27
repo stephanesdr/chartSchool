@@ -12,7 +12,7 @@ class GeneralQuestionsController < ApplicationController
   def update
     @question = GeneralQuestion.find(params[:id])
     @question.update( teacher_check: params[:teacher_check] )
-    redirect_to request.referer
+    # redirect_to request.referer
   end
 
   def create

@@ -1,15 +1,16 @@
 console.log("Welcome bro from course/show.js!");
 
+
 var divCount = document.getElementsByClassName('question-card').length;
 var initialQuestionsCount = gon.initial_questions_count;
-//getQuestions;
-$( document ).ready(function()
-{
-  //getQuestions;
-   var objDiv = document.getElementById("question_container");
-   objDiv.scrollTop = objDiv.scrollHeight;
 
-});
+  $( document ).on('load' , (function()
+  {
+    var objDiv = document.getElementById("question_container");
+    objDiv.innerHTML = "" ;
+    objDiv.scrollTop = objDiv.scrollHeight;
+
+  }));
 
 
 function getQuestions(questions)
@@ -46,12 +47,27 @@ function getQuestions(questions)
         }
       else if (gon.teacher)
       {
+        // var form = document.createElement("form");
+        // form.setAttribute('method',"patch");
+        // form.setAttribute('action',"/general_questions/"+element.id);
+        //
+        // var checkbox_case = document.createElement("INPUT");
+        // checkbox_case.innerHTML ="Validation";
+        // checkbox_case.setAttribute("type", "checkbox");
+        // checkbox_case.checked = element.teacher_check;
+        // checkbox_case.setAttribute('name',"Validation");
+        // checkbox_case.setAttribute('onchange' , "this.form.submit();")
+        // form.appendChild( checkbox_case );
+        //
+        // newDiv.appendChild( form );
+
         var delete_link = document.createElement("a");
         delete_link.href='/general_questions/'+ element.id ;
-        console.log("element.id ->" + element.id);
+        // console.log("element.id ->" + element.id);
         delete_link.setAttribute("data-method", "delete");
         delete_link.innerHTML = "Supprimer la question <hr/>";
         newDiv.appendChild( delete_link );
+
       }
       document.getElementById("question_container").appendChild(newDiv);
 
@@ -86,9 +102,9 @@ function questionCount(questions)
 {
   var newQuestionCount = questions.length ;
   if (newQuestionCount != initialQuestionsCount){ getQuestions(questions) }
-    // console.log(questions);
+   //  console.log(questions);
    // console.log("newQuestionCount ->" + newQuestionCount);
    // console.log("initialQuestionsCount ->" + initialQuestionsCount);
 }
 
-gon.watch( "questions" , {interval: 1000},  getQuestions );
+ gon.watch( "questions" , {interval: 1000}, getQuestions );
