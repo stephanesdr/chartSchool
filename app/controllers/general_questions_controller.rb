@@ -23,11 +23,13 @@ class GeneralQuestionsController < ApplicationController
       course_id: params[:course_id],
       student_id: student.id
     )
+
     if @question.save
       @general_question_votes = @question.general_question_votes.count
       respond_to do |format|
         format.js
       end
+
     else
       flash[:notice] = "Il manque un titre à ta question."
     end
