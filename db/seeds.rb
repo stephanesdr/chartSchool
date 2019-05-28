@@ -9,6 +9,44 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'faker'
+#-----------------TRANSFER TEACHER AND STUDENT TABLES TO PEOPLE TABLE (EXPERIMENTAL)---------------
+
+GeneralQuestion.all.each { |question| question.update(attendee: nil) }
+GeneralQuestionVote.all.each { |vote| vote.update(attendee: nil) }
+Attendance.all.each { |atd| atd.update(attendee: nil) }
+Course.all.each { |course| course.update(creator: nil) }
+puts "Junction Tables forgot user :'( "
+User.all.each { |user| User.destroy(user.id) }
+ActiveRecord::Base.connection.reset_pk_sequence!('users')
+puts "Clear whole user_table : done"
+
+ActiveRecord::Base.connection.reset_pk_sequence!('users')
+puts "Reinitialisation of PK for user_table : done"
+
+Teacher.all.each { |teacher| User.create(name: teacher.name, email: teacher.email, password: teacher.encrypted_password, created_at: teacher.created_at, confirmed_at: teacher.confirmed_at ) }
+puts "teacher_table is now copied inside user_table"
+
+Student.all.each { |student| User.create(name: student.name, email: student.email, password: student.encrypted_password, created_at: student.created_at, confirmed_at: student.confirmed_at) }
+puts "student_table is now copied inside user_table"
+
+Attendance.all.each { |atd| atd.update( attendee_id: User.find_by(email: Student.find(atd.student_id).email ).id ) }
+puts "attendance_table is now adjusted with user_table"
+
+GeneralQuestion.all.each  { |question| question.update( attendee_id: User.find_by(email: Student.find(question.student_id).email ).id ) }
+puts "general_question_table is now adjusted with user_table"
+
+GeneralQuestionVote.all.each { |question_vote| question_vote.update( attendee_id: User.find_by(email: Student.find(question_vote.student_id).email ).id ) }
+puts "general_question_vote_table is now adjusted with user_table"
+
+Course.all.each do |course|
+  course.creator_id = course.teacher.id
+  course.save(validate: false)
+end
+puts "course_table is now adjusted with user_table"
+
+#-----------------TRANSFER TEACHER AND STUDENT TABLES TO USER TABLE-------------------------
+
+# ____________________** OFFICIAL SEEDS **____________________
 
 # unless Teacher.find_by(email: "teacher@yopmail.com")
 #   Teacher.create!(

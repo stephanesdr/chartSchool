@@ -25,6 +25,7 @@ class Step < ApplicationRecord
   validates :title, presence: true
   has_many :step_students, dependent: :destroy
   has_many :students, through: :step_students
+  # has_many :attendees, class_name: "User",  through: :attendee_steps
   belongs_to :course
 
   def percentage

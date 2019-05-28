@@ -22,6 +22,9 @@ Rails:
 Rails/Output:
   Enabled: false
 
+Rails/InverseOf:
+  Enabled: false
+  
 Style/DateTime:
   Enabled: true
 
