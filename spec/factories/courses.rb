@@ -33,5 +33,6 @@ FactoryBot.define do
     end_time { Faker::Date.forward(24) }
     description { Faker::Books::Lovecraft.paragraph_by_chars }
     teacher { FactoryBot.create(:teacher) }
+    creator { FactoryBot.create(:user) }
   end
 end

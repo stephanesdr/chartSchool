@@ -28,6 +28,7 @@
 FactoryBot.define do
   factory :attendance do
     student_id { 1 }
+    attendee_id { 1 }
     course_id { 1 }
   end
 end
