@@ -12,7 +12,7 @@ class GeneralQuestionsController < ApplicationController
   def update
     @question = GeneralQuestion.find(params[:id])
     @question.update( teacher_check: params[:teacher_check] )
-    redirect_to request.referer
+    # redirect_to request.referer
   end
 
   def create
@@ -23,6 +23,7 @@ class GeneralQuestionsController < ApplicationController
       course_id: params[:course_id],
       student_id: student.id
     )
+
     if @question.save
       @general_question_votes = @question.general_question_votes.count
       respond_to do |format|
