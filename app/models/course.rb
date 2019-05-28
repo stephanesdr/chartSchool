@@ -22,6 +22,7 @@
 class Course < ApplicationRecord
   has_many :attendances, dependent: :destroy
   has_many :attendees, through: :attendances
+  has_many :students, through: :attendances
   belongs_to :creator, class_name: "User", inverse_of: :courses
   has_many :general_questions, dependent: :destroy
   has_many :pending_attendances, dependent: :destroy
