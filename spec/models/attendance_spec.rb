@@ -42,9 +42,5 @@ RSpec.describe Attendance, type: :model do
     describe "Course" do
       it { expect(attendance).to belong_to(:course) }
     end
-
-    describe "Student" do
-      it { expect(attendance).to belong_to(:student) }
-    end
   end
 end
