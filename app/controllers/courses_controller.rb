@@ -29,6 +29,13 @@ class CoursesController < ApplicationController
     @students = @course.students
 
     @questions = GeneralQuestion.where(course_id: @course.id)
+    @votes = GeneralQuestionVote.all
+    # gon.watch.votes = @votes
+    gon.watch.questions = @questions.as_json(include: [:general_question_votes])
+    gon.initial_questions_count = @questions.count
+    gon.teacher = current_teacher
+    gon.student = current_student
+    gon.user = current_teacher || current_student
     @teacher = current_teacher # || Teacher.last
     @student = current_student # || Student.last
   end

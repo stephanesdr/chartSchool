@@ -1,0 +1,21 @@
+
+
+var newDiv = document.createElement("div");
+  newDiv.classList.add("question-card");
+  newDiv.setAttribute('id','question-card#<%= @question[:id]%>');
+  newDiv.innerHTML = " ID : #<%=@question[:id]%><br>\
+                      <u><%= @question[:title]%></u><br>\
+                      <%= @question[:description]%><br>\ <br>\
+                      <%= @general_question_votes%> vote  <hr/>";
+document.getElementById("question_container").appendChild(newDiv);
+
+var id = <%= @question[:id] %>
+
+
+document.getElementById('description').value = '' ;
+document.getElementById('title').value = '' ;
+
+var objDiv = document.getElementById("question_container");
+objDiv.scrollTop = objDiv.scrollHeight;
+
+console.log("Creation de la div question_card#"+id);
