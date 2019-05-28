@@ -17,14 +17,14 @@ class GeneralQuestionsController < ApplicationController
 
   def create
     student = current_student # || Student.last
-    @question = GeneralQuestion.new(
+    @question = GeneralQuestion.create(
       title: params[:title],
       description: params[:description],
       course_id: params[:course_id],
       student_id: student.id
     )
 
-    if @question.save
+    if @question.errors.any?
       @general_question_votes = @question.general_question_votes.count
       respond_to do |format|
         format.js
