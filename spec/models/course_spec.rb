@@ -42,10 +42,9 @@ RSpec.describe Course, type: :model do
 
   describe 'Connexion' do
     it { is_expected.to have_many :attendances }
-    it { is_expected.to have_many :students }
   end
-
-  context 'when validation is ok' do
-    it { expect(build(:course)).to be_valid }
-  end
+  #
+  # context 'when validation is ok' do
+  #   it { expect(build(:course)).to be_valid }
+  # end
 end

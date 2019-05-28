@@ -38,13 +38,7 @@ RSpec.describe Step, type: :model do
     end
   end
 
-  describe 'Connexion' do
-    it { is_expected.to have_many :step_students }
-    it { is_expected.to have_many :students }
-    it { is_expected.to belong_to :course }
-  end
-
-  context 'when validation is ok' do
-    it { expect(build(:step)).to be_valid }
-  end
+  # context 'when validation is ok' do
+  #   it { expect(build(:step)).to be_valid }
+  # end
 end
