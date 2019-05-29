@@ -24,7 +24,7 @@
 
 class Attendance < ApplicationRecord
   belongs_to :student, optional: true
-  belongs_to :attendee, class_name: "User"
+  belongs_to :attendee, class_name: "Person"
   belongs_to :course
   after_create :invitation_send
 

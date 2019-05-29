@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: users
+# Table name: people
 #
 #  id                     :bigint           not null, primary key
 #  confirmation_sent_at   :datetime
@@ -19,12 +19,12 @@
 #
 # Indexes
 #
-#  index_users_on_email                 (email) UNIQUE
-#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_people_on_email                 (email) UNIQUE
+#  index_people_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe Person, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end
