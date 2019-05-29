@@ -20,7 +20,9 @@ Rails.application.routes.draw do
     resources :general_question_votes, only: %i[create]
   end
 
-  resources :templates, only: %i[new create show index]
+  resources :templates, only: %i[new create show index] do
+    resources :step_templates, only: %i[create]
+  end
   resources :courses, only: %i[new create show index] do
     resources :attendances, only: %i[create]
     resources :steps, only: %i[create] do
