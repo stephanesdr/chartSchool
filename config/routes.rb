@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :users, path: 'user', :controllers => { registrations: "user/registrations" }
+  devise_for :people, path: 'people', :controllers => { registrations: "person/registrations" }
   root to: 'connexion/start#index'
 
   namespace :connexion do
