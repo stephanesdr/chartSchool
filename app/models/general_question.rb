@@ -27,7 +27,8 @@
 class GeneralQuestion < ApplicationRecord
   after_create :vote_for_own_question
   belongs_to :course
-  belongs_to :student
+  belongs_to :student, optional: true
+  belongs_to :attendee, class_name: "User"
   has_many :general_question_votes, dependent: :destroy
 
   validates :title, presence: true, uniqueness: true

@@ -23,9 +23,9 @@
 #
 
 class Attendance < ApplicationRecord
-  belongs_to :student
-  belongs_to :attendee, class_name: "User", inverse_of: :attendances
-  belongs_to :course, inverse_of: :attendances
+  belongs_to :student, optional: true
+  belongs_to :attendee, class_name: "User"
+  belongs_to :course
   after_create :invitation_send
 
   def invitation_send

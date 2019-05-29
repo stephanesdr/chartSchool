@@ -23,15 +23,15 @@ class Course < ApplicationRecord
   has_many :attendances, dependent: :destroy
   has_many :attendees, through: :attendances
   has_many :students, through: :attendances
-  belongs_to :teacher
-  belongs_to :creator, class_name: "User", inverse_of: :courses
+  belongs_to :teacher, optional: true
+  belongs_to :creator, class_name: "User"
   has_many :general_questions, dependent: :destroy
   has_many :pending_attendances, dependent: :destroy
 
   validates :title, presence: true
   validate :date_cannot_be_in_the_past
 
-  has_many :steps, dependent: :destroy
+  # has_many :steps, dependent: :destroy
 
   def date_cannot_be_in_the_past
     if end_time.present? && end_time < Time.zone.today

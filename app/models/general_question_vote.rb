@@ -23,5 +23,6 @@
 
 class GeneralQuestionVote < ApplicationRecord
   belongs_to :general_question
-  belongs_to :student
+  belongs_to :student, optional: true
+  belongs_to :attendee, class_name: "User"
 end

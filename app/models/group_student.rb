@@ -22,6 +22,6 @@
 #
 
 class GroupStudent < ApplicationRecord
-  belongs_to :student
+  belongs_to :student, optional: true
   belongs_to :group
 end
