@@ -23,5 +23,6 @@
 
 class Template < ApplicationRecord
   belongs_to :person
+  has_many :step_templates, dependent: :destroy
   validates :title, presence: true
 end
