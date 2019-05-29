@@ -14,4 +14,9 @@ class TemplatesController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def show
+    @template = Template.find(params[:id])
+    @steps = @template.step_templates
+  end
 end
