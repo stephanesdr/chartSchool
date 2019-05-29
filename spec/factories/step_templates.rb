@@ -2,30 +2,28 @@
 
 # == Schema Information
 #
-# Table name: templates
+# Table name: step_templates
 #
 #  id          :bigint           not null, primary key
 #  description :text
-#  resource    :text
 #  title       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  person_id   :bigint
+#  template_id :bigint
 #
 # Indexes
 #
-#  index_templates_on_person_id  (person_id)
+#  index_step_templates_on_template_id  (template_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (person_id => people.id)
+#  fk_rails_...  (template_id => templates.id)
 #
 
 FactoryBot.define do
-  factory :template do
+  factory :step_template do
     title { Faker::Educator.subject }
-    resource { Faker::GreekPhilosophers.quote }
-    description { Faker::Books::Lovecraft.paragraph_by_chars }
-    person { FactoryBot.create(:person) }
+    description { Faker::GreekPhilosophers.quote }
+    template { FactoryBot.create(:template) }
   end
 end
