@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: users
+# Table name: people
 #
 #  id                     :bigint           not null, primary key
 #  confirmation_sent_at   :datetime
@@ -19,8 +19,8 @@
 #
 # Indexes
 #
-#  index_users_on_email                 (email) UNIQUE
-#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_people_on_email                 (email) UNIQUE
+#  index_people_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
 class Person < ApplicationRecord
@@ -37,8 +37,12 @@ class Person < ApplicationRecord
   validates :name, presence: true
 
   has_many :general_questions, dependent: :destroy
-  # has_many :step_students, dependent: :destroy
-  # has_many :steps, through: :step_students
+
+  has_many :step_persons, dependent: :destroy
+  has_many :steps, through: :step_persons
+
+  has_many :group_persons, dependent: :destroy
+  has_many :groups, through: :group_persons
 
   has_many :attendances, foreign_key: 'attendee_id', dependent: :nullify
   has_many :general_questions, foreign_key: 'attendee_id', class_name: "GeneralQuestion", dependent: :nullify

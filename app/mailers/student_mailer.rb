@@ -5,10 +5,11 @@ class StudentMailer < ApplicationMailer
 
   def invitation(attendance)
     # @student = attendance.student
-    # @teacher = @course.teacher
+
     @student = attendance.attendee
     @course = attendance.course
     @teacher = @course.creator
+    # @teacher = @course.teacher
 
     mail(to: @student.email, subject: 'Vous êtes invité à suivre un cours')
   end
