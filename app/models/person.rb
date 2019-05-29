@@ -51,4 +51,8 @@ class Person < ApplicationRecord
   has_many :general_question_votes, foreign_key: 'attendee_id', class_name: "GeneralQuestionVote", dependent: :nullify
 
   has_many :courses, foreign_key: 'creator_id', class_name: "Course", dependent: :nullify
+
+  def courses_as_creator
+    Course.where(creator_id: id)
+  end
 end
