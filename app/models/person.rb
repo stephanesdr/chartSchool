@@ -38,15 +38,17 @@ class Person < ApplicationRecord
 
   has_many :general_questions, dependent: :destroy
 
-  has_many :step_persons, dependent: :destroy
-  has_many :steps, through: :step_persons
+  has_many :step_people, dependent: :destroy
+  has_many :steps, through: :step_people
 
-  has_many :group_persons, dependent: :destroy
-  has_many :groups, through: :group_persons
+  has_many :group_people, dependent: :destroy
+  has_many :groups, through: :group_people
 
   has_many :attendances, foreign_key: 'attendee_id', dependent: :nullify
+  has_many :courses, foreign_key: 'attendee_id', through: :attendances
+
   has_many :general_questions, foreign_key: 'attendee_id', class_name: "GeneralQuestion", dependent: :nullify
   has_many :general_question_votes, foreign_key: 'attendee_id', class_name: "GeneralQuestionVote", dependent: :nullify
+
   has_many :courses, foreign_key: 'creator_id', class_name: "Course", dependent: :nullify
-  has_many :courses, foreign_key: 'attendee_id', through: :attendances
 end

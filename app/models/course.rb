@@ -28,9 +28,12 @@
 class Course < ApplicationRecord
   has_many :attendances, dependent: :destroy
   has_many :attendees, class_name: "Person", through: :attendances
+
   has_many :students, through: :attendances
   belongs_to :teacher, optional: true
-  belongs_to :creator, class_name: "Person", optional: true
+
+  belongs_to :creator, class_name: "Person"
+
   has_many :general_questions, dependent: :destroy
   has_many :pending_attendances, dependent: :destroy
 

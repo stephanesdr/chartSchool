@@ -13,8 +13,8 @@
 class Group < ApplicationRecord
   # validates :title, presence: true
 
-  has_many :group_persons, dependent: :destroy
-  has_many :attendees, class_name: "Person", through: :group_persons
+  has_many :group_people, dependent: :destroy
+  has_many :attendees, class_name: "Person", through: :group_people
 
   has_many :group_students, dependent: :nullify
   has_many :students, through: :group_students
