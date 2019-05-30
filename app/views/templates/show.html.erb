@@ -26,3 +26,5 @@ Add steps :
   <% end %>
 
 <%= link_to("Éditer", edit_template_path(@template.id)) %>
+
+  <%= link_to("Créer un cours", template_template_course_index_path(@template.id), method: :post) %>
