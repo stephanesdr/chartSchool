@@ -1,33 +1,22 @@
- 
+<div>
+  <% if person_signed_in? %>
+  <li>
+    <%= person_signed_in? ? current_person.email : "oups pas" %> connecté
 
-  
+  </li>
 
+  <li>
+    <%= link_to "deconnexion", destroy_person_session_path, method: "delete" %>
 
-
-
-    <ul>
-
-
-      <div>
-        <% if person_signed_in? %>
-        <li>
-          <%= person_signed_in? ? current_person.email : "oups pas" %> connecté
-        
-        </li>
-
-        <li>           
-         <%= link_to "deconnexion", destroy_person_session_path, method: "delete" %>
-       
-        </li>
-        <% else %>
-            <%= link_to(new_person_session_path) do %>
+  </li>
+  <% else %>
+  <%= link_to(new_person_session_path) do %>
   <div class="btn btn-info w-25 mx-auto py-3 my-3">
-	  Sign in
+    Sign in
   </div>
-<% end %>
-          <% end %>
-      </div>
-    
-    </ul>
+  <% end %>
+  <% end %>
+</div>
 
+</ul>
 

@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     resources :attendances, only: %i[create]
     resources :steps, only: %i[create] do
       resources :steps_students, only: %i[create destroy]
+      resources :steps_people, only: %i[create destroy]
     end
 
 
