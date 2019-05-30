@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   end
 
   resources :templates do
+    resources :template_course, only: %i[create]
     resources :step_templates, only: %i[create destroy]
   end
   resources :courses, only: %i[new create show index] do

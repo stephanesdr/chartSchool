@@ -11,7 +11,7 @@ class TemplatesController < ApplicationController
       flash[:warning] = "Echec dans la création du modèle, veuillez à ce que tout les champs soit correctement rempli"
       redirect_to request.referer
     elsif flash[:notice] = "Modèle correctement créé"
-      redirect_to root_path
+      redirect_to template_path(@template.id)
     end
   end
 
