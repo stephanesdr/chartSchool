@@ -23,6 +23,6 @@
 #
 
 class StepStudent < ApplicationRecord
-  # belongs_to :step
-  # belongs_to :student
+  belongs_to :step
+  belongs_to :student
 end
