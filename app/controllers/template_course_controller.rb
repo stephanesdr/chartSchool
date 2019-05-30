@@ -7,5 +7,6 @@ class TemplateCourseController < ApplicationController
     template.step_templates.each do |step|
       Step.create(course: course, title: step.title, description: step.description)
     end
+    redirect_to course_path(course.id)
   end
 end
