@@ -66,6 +66,15 @@ require 'faker'
 # end
 #
 #
+
+# random_people = Person.create!(
+#   name: "Person",
+#   email: "person@yopmail.com",
+#   password: "000000",
+#   confirmed_at: Time.zone.now
+# )
+# p "*** Usable random user is now created with \ email: person@yopmail.com \ password : 000000 "
+
 # 1.upto(10) do |i|
 #   name = Faker::Name.unique.name
 #   Person.create!(
@@ -89,6 +98,18 @@ require 'faker'
 #   )
 #   p "Course #{i} : créé"
 # end
+
+# 1.upto(20) do |i|
+#   courseid = Course.all.sample.id
+#   unless Attendance.find_by(course_id: courseid, attendee_id: random_people.id)
+#     Attendance.create!(
+#       attendee_id: random_people.id,
+#       course_id: courseid
+#     )
+#   end
+#   p " * Attendance for random people  #{i} : créé"
+# end
+
 #
 # 1.upto(100) do |i|
 #   Step.create!(
