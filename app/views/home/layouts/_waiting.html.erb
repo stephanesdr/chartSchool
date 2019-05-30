@@ -1,41 +1,22 @@
-    <h1>En attendant mieux !</h1>
-    <p></p>
+<div>
+  <% if person_signed_in? %>
+  <li>
+    <%= person_signed_in? ? current_person.email : "oups pas" %> connecté
 
-    <ul>
-    <% if current_person %>
-      <div>
-        <% if person_signed_in?  %>
-        <li>
-          <%=  current_person.email if person_signed_in?  %> connecté
-        </li>
-        <li>
-          <% if person_signed_in? %>
-            <%= link_to "profil", edit_person_registration_path(current_person.id) %>
-            <% else %>
-              <%= link_to "deconnexion", destroy_person_session_path, method: "delete" %>
-          <% end %>
-        </li>
-        
-        <% end %>
-      </div>
+  </li>
 
-    </ul>
-    <% else %>
-      <div>
-        <ul>
-          <li>
-            Aucun utilisateur connecté <br><br>
-          </li>
-          Nouveau ? ? <br>
-          <li>
-            <%= link_to "inscription", new_person_registration_path %>
-          </li>
-          <li>
-            <%= link_to "connexion", new_person_session_path %>
-          </li>
-          <br>
-        </ul>
-      </div>
+  <li>
+    <%= link_to "deconnexion", destroy_person_session_path, method: "delete" %>
 
-    <% end %>
-    </div>
+  </li>
+  <% else %>
+  <%= link_to(new_person_session_path) do %>
+  <div class="btn btn-info w-25 mx-auto py-3 my-3">
+    Sign in
+  </div>
+  <% end %>
+  <% end %>
+</div>
+
+</ul>
+
