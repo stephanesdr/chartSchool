@@ -7,7 +7,7 @@
 <div id="question_container">
 
 <% if @questions.present?%>
-<%@questions.each do |question|%>
+<%@questions.order("created_at DESC").each do |question|%>
 <div id="question-card#<%=question.id%>" class="question-card" >
 
 
