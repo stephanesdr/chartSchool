@@ -1,54 +1,33 @@
-    <h1>En attendant mieux !</h1>
-    <p></p>
-    
+ 
+
+  
+
+
+
+
     <ul>
-    <% if current_student || current_teacher %>
+
+
       <div>
-        <% if student_signed_in? || teacher_signed_in? %>
+        <% if person_signed_in? %>
         <li>
-          <%= student_signed_in? ? current_student.email : current_teacher.email %> connecté
+          <%= person_signed_in? ? current_person.email : "oups pas" %> connecté
+        
         </li>
-        <li>
-          <% if student_signed_in? %>
-            <%= link_to "profil", edit_student_registration_path(current_student.id) %>
-          <% else %>
-            <%= link_to "profil", edit_teacher_registration_path(current_teacher.id) %>
+
+        <li>           
+         <%= link_to "deconnexion", destroy_person_session_path, method: "delete" %>
+       
+        </li>
+        <% else %>
+            <%= link_to(new_person_session_path) do %>
+  <div class="btn btn-info w-25 mx-auto py-3 my-3">
+	  Sign in
+  </div>
+<% end %>
           <% end %>
-        </li>
-        <li>
-          <% if student_signed_in? %>
-            <%= link_to "deconnexion", destroy_teacher_session_path, method: "delete" %>
-          <% else %>
-            <%= link_to "deconnexion", destroy_teacher_session_path, method: "delete" %>
-          <% end %>
-        </li>
-        <% end %>
       </div>
     
     </ul>
-    <% else %>
-      <div>
-        <ul>
-          <li>
-            Aucun utilisateur connecté <br><br>
-          </li>
-          Etudiant ? <br>
-          <li>
-            <%= link_to "inscription", new_student_registration_path %>
-          </li>
-          <li>
-            <%= link_to "connexion", new_student_session_path %>
-          </li>
-          <br>
-          Enseignant ? <br>
-          <li>
-            <%= link_to "inscription", new_teacher_registration_path %>
-          </li>
-          <li>
-            <%= link_to "connexion", new_student_session_path %>
-          </li>
-        </ul>
-      </div>
-    
-    <% end %>
-    </div>
+
+
