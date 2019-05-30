@@ -1,0 +1,28 @@
+<h1><%= @template.title %></h1>
+<h2>Par <%= @template.person.name %> </h2>
+<p><%= @template.description %></p>
+<p><%= @template.resource %></p>
+
+
+Add steps :
+<%= form_tag url_for(template_step_templates_path(@template.id)), multipart: true, method: "post" do %>
+
+
+
+        <%= label_tag 'Titre' %><br>
+        <%= text_field_tag 'title', @title  %><br>
+
+        <%= label_tag 'Description' %><br>
+        <%= text_area_tag 'description', @description  %><br>
+
+        <%= submit_tag "Créer une étape" %>
+
+  <% end %>
+
+  <% @steps.each do |step| %>
+  <%= step.title %>
+  <%= step.description %>
+  <%= link_to("Supprimer", template_step_template_path(@template.id, step.id), method: :delete, class: "text-danger") %><br>
+  <% end %>
+
+<%= link_to("Éditer", edit_template_path(@template.id)) %>
