@@ -65,7 +65,6 @@ require 'faker'
 #   )
 # end
 
-
 # 1.upto(10) do |i|
 #   name = Faker::Name.unique.name
 #   Person.create!(
@@ -76,7 +75,6 @@ require 'faker'
 #   )
 #   p "Person #{i} : créé"
 # end
-
 
 # 1.upto(50) do |i|
 #   Course.create!(
