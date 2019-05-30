@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-<% if current_person == @course.creator %>
-=======
 <% if @is_teacher %>
->>>>>>> issue/130_modify_courses_controller
 <%= render "teacher_show" %>
 <% elsif @is_student %>
 <%= render "student_show" %>
