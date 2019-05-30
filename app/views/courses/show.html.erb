@@ -1,4 +1,4 @@
-<% if current_teacher %>
+<% if current_person == @course.creator %>
 <%= render "teacher_show" %>
 <% elsif current_student %>
 <%= render "student_show" %>

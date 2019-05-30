@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_29_135816) do
+ActiveRecord::Schema.define(version: 2019_05_29_174615) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,15 @@ ActiveRecord::Schema.define(version: 2019_05_29_135816) do
     t.index ["student_id"], name: "index_step_students_on_student_id"
   end
 
+  create_table "step_templates", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.bigint "template_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["template_id"], name: "index_step_templates_on_template_id"
+  end
+
   create_table "steps", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -186,6 +195,16 @@ ActiveRecord::Schema.define(version: 2019_05_29_135816) do
     t.index ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
   end
 
+  create_table "templates", force: :cascade do |t|
+    t.string "title"
+    t.text "resource"
+    t.text "description"
+    t.bigint "person_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["person_id"], name: "index_templates_on_person_id"
+  end
+
   add_foreign_key "attendances", "courses"
   add_foreign_key "attendances", "people", column: "attendee_id"
   add_foreign_key "attendances", "students"
@@ -207,5 +226,7 @@ ActiveRecord::Schema.define(version: 2019_05_29_135816) do
   add_foreign_key "step_people", "steps"
   add_foreign_key "step_students", "steps"
   add_foreign_key "step_students", "students"
+  add_foreign_key "step_templates", "templates"
   add_foreign_key "steps", "courses"
+  add_foreign_key "templates", "people"
 end

@@ -1,0 +1,16 @@
+<%= form_tag url_for(action: 'create'), multipart: true, method: "post" do %>
+
+
+
+        <%= label_tag 'Titre' %><br>
+        <%= text_field_tag 'title', @title  %><br>
+
+        <%= label_tag 'Description' %><br>
+        <%= text_area_tag 'description', @description  %><br>
+
+        <%= label_tag 'Ressource' %><br>
+        <%= text_area_tag 'resource', @resource  %><br>
+
+        <%= submit_tag "Créer le modèle de cours" %>
+
+  <% end %>
