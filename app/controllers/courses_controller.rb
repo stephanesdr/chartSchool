@@ -33,11 +33,17 @@ class CoursesController < ApplicationController
     # gon.watch.votes = @votes
     gon.watch.questions = @questions.as_json(include: [:general_question_votes])
     gon.initial_questions_count = @questions.count
-    # gon.teacher = current_teacher
-    # gon.student = current_student
+
     gon.user = current_person
     @is_teacher = @course.creator == current_person
     @is_student = current_person.courses_as_attendee.include?(@course)
+
+    if @is_teacher
+      gon.teacher = current_person
+    elsif @is_student
+      gon.student = current_person
+    end
+
     @teacher = current_person
     @student = current_person
   end
