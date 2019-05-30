@@ -1,6 +1,6 @@
-<% if current_teacher %>
+<% if @is_teacher %>
 <%= render "teacher_show" %>
-<% elsif current_student %>
+<% elsif @is_student %>
 <%= render "student_show" %>
 <% end %>
 

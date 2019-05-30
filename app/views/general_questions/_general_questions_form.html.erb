@@ -1,6 +1,6 @@
 
 
-<% if @student %>
+<% if @is_student %>
 <h3>POSER UNE QUESTION</h3>
   <%= form_tag url_for(controller: 'general_questions', action: 'create'), multipart: true, method: "post", remote: true do %>
 

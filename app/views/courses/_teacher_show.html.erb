@@ -1,5 +1,5 @@
 <h1><%= @course.title %></h1>
-<h2>Par <%= @course.teacher.name %> </h2>
+<h2>Par <%= @course.creator.name %> </h2>
 <p><%= @course.description %></p>
 <p><%= @course.resource %></p>
 <p><% @students.each do |student| %>

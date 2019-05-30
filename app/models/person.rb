@@ -49,4 +49,39 @@ class Person < ApplicationRecord
   has_many :general_question_votes, foreign_key: 'attendee_id', class_name: "GeneralQuestionVote", dependent: :nullify
 
   has_many :courses, foreign_key: 'creator_id', class_name: "Course", dependent: :nullify
+
+  def courses_as_attendee
+    arr = []
+    Attendance.where(attendee_id: id).find_each { |atd| arr << atd.course }
+    arr
+  end
+
+  def courses_as_creator
+    Course.where(creator_id: id)
+  end
+
+  def all_courses
+    arr = []
+    Attendance.where(attendee_id: id).find_each { |atd| arr << atd.course }
+    Course.where(creator_id: id).find_each { |course| arr << course }
+    arr
+  end
+
+  def archived_courses
+    archived = []
+    all_courses.each do |course|
+      next unless course.end_time < Time.zone.now
+
+      archived << course
+    end
+  end
+
+  def pending_courses
+    pending = []
+    all_courses.each do |course|
+      next unless course.end_time > Time.zone.now
+
+      pending << course
+    end
+  end
 end
