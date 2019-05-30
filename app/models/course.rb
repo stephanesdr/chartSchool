@@ -12,26 +12,35 @@
 #  title       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  creator_id  :bigint
 #  teacher_id  :bigint
 #
 # Indexes
 #
+#  index_courses_on_creator_id  (creator_id)
 #  index_courses_on_teacher_id  (teacher_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (creator_id => people.id)
 #
 
 class Course < ApplicationRecord
   has_many :attendances, dependent: :destroy
-  has_many :attendees, through: :attendances
+  has_many :attendees, class_name: "Person", through: :attendances
+
   has_many :students, through: :attendances
-  belongs_to :teacher
-  belongs_to :creator, class_name: "Person", inverse_of: :courses
+  belongs_to :teacher, optional: true
+
+  belongs_to :creator, class_name: "Person"
+
   has_many :general_questions, dependent: :destroy
   has_many :pending_attendances, dependent: :destroy
 
   validates :title, presence: true
   validate :date_cannot_be_in_the_past
 
-  has_many :steps, dependent: :destroy
+  # has_many :steps, dependent: :destroy
 
   def date_cannot_be_in_the_past
     if end_time.present? && end_time < Time.zone.today

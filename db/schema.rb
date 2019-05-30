@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_29_103850) do
+ActiveRecord::Schema.define(version: 2019_05_29_135816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2019_05_29_103850) do
     t.bigint "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "attendee_id"
+    t.index ["attendee_id"], name: "index_attendances_on_attendee_id"
     t.index ["course_id", "student_id"], name: "by_course_and_student", unique: true
     t.index ["course_id"], name: "index_attendances_on_course_id"
     t.index ["student_id"], name: "index_attendances_on_student_id"
@@ -34,6 +36,8 @@ ActiveRecord::Schema.define(version: 2019_05_29_103850) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "teacher_id"
+    t.bigint "creator_id"
+    t.index ["creator_id"], name: "index_courses_on_creator_id"
     t.index ["teacher_id"], name: "index_courses_on_teacher_id"
   end
 
@@ -42,6 +46,8 @@ ActiveRecord::Schema.define(version: 2019_05_29_103850) do
     t.bigint "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "attendee_id"
+    t.index ["attendee_id"], name: "index_general_question_votes_on_attendee_id"
     t.index ["general_question_id"], name: "index_general_question_votes_on_general_question_id"
     t.index ["student_id"], name: "index_general_question_votes_on_student_id"
   end
@@ -54,8 +60,19 @@ ActiveRecord::Schema.define(version: 2019_05_29_103850) do
     t.bigint "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "attendee_id"
+    t.index ["attendee_id"], name: "index_general_questions_on_attendee_id"
     t.index ["course_id"], name: "index_general_questions_on_course_id"
     t.index ["student_id"], name: "index_general_questions_on_student_id"
+  end
+
+  create_table "group_people", force: :cascade do |t|
+    t.bigint "group_id"
+    t.bigint "attendee_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attendee_id"], name: "index_group_people_on_attendee_id"
+    t.index ["group_id"], name: "index_group_people_on_group_id"
   end
 
   create_table "group_students", force: :cascade do |t|
@@ -104,6 +121,15 @@ ActiveRecord::Schema.define(version: 2019_05_29_103850) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_people_on_email", unique: true
     t.index ["reset_password_token"], name: "index_people_on_reset_password_token", unique: true
+  end
+
+  create_table "step_people", force: :cascade do |t|
+    t.bigint "step_id"
+    t.bigint "attendee_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attendee_id"], name: "index_step_people_on_attendee_id"
+    t.index ["step_id"], name: "index_step_people_on_step_id"
   end
 
   create_table "step_students", force: :cascade do |t|
@@ -161,16 +187,24 @@ ActiveRecord::Schema.define(version: 2019_05_29_103850) do
   end
 
   add_foreign_key "attendances", "courses"
+  add_foreign_key "attendances", "people", column: "attendee_id"
   add_foreign_key "attendances", "students"
+  add_foreign_key "courses", "people", column: "creator_id"
   add_foreign_key "general_question_votes", "general_questions"
+  add_foreign_key "general_question_votes", "people", column: "attendee_id"
   add_foreign_key "general_question_votes", "students"
   add_foreign_key "general_questions", "courses"
+  add_foreign_key "general_questions", "people", column: "attendee_id"
   add_foreign_key "general_questions", "students"
+  add_foreign_key "group_people", "groups"
+  add_foreign_key "group_people", "people", column: "attendee_id"
   add_foreign_key "group_students", "groups"
   add_foreign_key "group_students", "students"
   add_foreign_key "group_teachers", "groups"
   add_foreign_key "group_teachers", "teachers"
   add_foreign_key "pending_attendances", "courses"
+  add_foreign_key "step_people", "people", column: "attendee_id"
+  add_foreign_key "step_people", "steps"
   add_foreign_key "step_students", "steps"
   add_foreign_key "step_students", "students"
   add_foreign_key "steps", "courses"

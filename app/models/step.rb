@@ -23,7 +23,11 @@
 
 class Step < ApplicationRecord
   validates :title, presence: true
-  has_many :step_students, dependent: :destroy
+
+  has_many :step_people, dependent: :destroy
+  has_many :attendees, class_name: "Person", through: :step_people
+
+  has_many :step_students, dependent: :nullify
   has_many :students, through: :step_students
   belongs_to :course
 
