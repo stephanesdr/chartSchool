@@ -26,6 +26,7 @@
 #
 
 class Course < ApplicationRecord
+  has_many :steps, dependent: :destroy
   has_many :attendances, dependent: :destroy
   has_many :attendees, class_name: "Person", through: :attendances
 
