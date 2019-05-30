@@ -24,6 +24,9 @@ module ChartSchool
 
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
+    # Load the CustomFailure from lib to override the error redirect devise
+    config.autoload_paths << Rails.root.join('lib')
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

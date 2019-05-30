@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
-  devise_for :people, path: 'people', :controllers => { registrations: "person/registrations" }
-  root to: 'connexion/start#index'
+  devise_for :people, :controllers => { registrations: "registrations" }
+  
+  root to: 'connexion/start#index' 
 
   namespace :connexion do
     resources :start, only: %i[index]
+    get 'start/signup', as: 'signup'
   end
 
   devise_for :students, path: 'students', :controllers => { sessions: "students/sessions",
