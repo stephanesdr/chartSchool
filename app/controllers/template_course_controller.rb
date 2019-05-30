@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TemplateCourseController < ApplicationController
   def create
     template = Template.find(params[:template_id])
