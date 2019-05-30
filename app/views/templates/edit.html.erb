@@ -1,0 +1,10 @@
+<%= form_for(@template, url: template_path(@template.id), html: { method: :patch }) do |f| %>
+
+<%= f.label :title %><br>
+<%= f.text_field :title, autocomplete: "title" %><br>
+<%= f.label :description %><br>
+<%= f.text_area :description, autocomplete: "description" %><br>
+<%= f.label :resource %><br>
+<%= f.text_area :resource, autocomplete: "resource" %><br>
+<%= submit_tag "Modifier" %>
+<% end %>
