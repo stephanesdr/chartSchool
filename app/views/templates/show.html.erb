@@ -24,3 +24,5 @@ Add steps :
   <%= step.description %>
   <%= link_to("Supprimer", template_step_template_path(@template.id, step.id), method: :delete, class: "text-danger") %><br>
   <% end %>
+
+<%= link_to("Éditer", edit_template_path(@template.id)) %>

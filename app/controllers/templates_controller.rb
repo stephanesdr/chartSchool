@@ -19,4 +19,14 @@ class TemplatesController < ApplicationController
     @template = Template.find(params[:id])
     @steps = @template.step_templates
   end
+
+  def edit
+    @template = Template.find(params[:id])
+  end
+
+  def update
+    @template = Template.find(params[:id])
+    @template.update(title: params[:template][:title], description: params[:template][:description], resource: params[:template][:resource])
+    redirect_to template_path(@template.id)
+  end
 end
