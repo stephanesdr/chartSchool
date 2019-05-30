@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class StepPersonController < ApplicationController
+class StepsPeopleController < ApplicationController
   def create
     @step_student = StepPerson.create(attendee: current_person, step: Step.find(params[:step_id]))
     redirect_to request.referer

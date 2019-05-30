@@ -70,18 +70,16 @@ class Person < ApplicationRecord
   def archived_courses
     archived = []
     all_courses.each do |course|
-      next unless course.end_time < Time.zone.now
-
-      archived << course
+      archived << course if course.end_time < Time.zone.now
     end
+    archived
   end
 
   def pending_courses
     pending = []
     all_courses.each do |course|
-      next unless course.end_time > Time.zone.now
-
-      pending << course
+      pending << course if course.start_time > Time.zone.now
     end
+    pending
   end
 end

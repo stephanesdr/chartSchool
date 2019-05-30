@@ -37,7 +37,7 @@ class CoursesController < ApplicationController
     # gon.student = current_student
     gon.user = current_person
     @is_teacher = @course.creator == current_person
-    @is_student = current_person.courses.include?(@course)
+    @is_student = current_person.courses_as_attendee.include?(@course)
     @teacher = current_person
     @student = current_person
   end
@@ -45,8 +45,12 @@ class CoursesController < ApplicationController
   def index
     @courses = Course.all
 
-    @archived_courses = current_person.courses if current_person
-    @pending_courses = current_person.pending_courses if current_person
+    @archived_courses_as_attendee = current_person.archived_courses if current_person
+    @pending_courses_as_attendee = current_person.pending_courses if current_person
+
+    @archived_courses_as_teacher = current_person.archived_courses.select { |course| course.creator == current_person } if current_person
+    @pending_courses_as_teacher = current_person.pending_courses.select { |course| course.creator == current_person } if current_person
+
     @teacher = current_person
     @student = current_person
   end
