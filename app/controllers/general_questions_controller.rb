@@ -17,20 +17,19 @@ class GeneralQuestionsController < ApplicationController
 
   def create
     student = current_student # || Student.last
-    @question = GeneralQuestion.create(
+    @question = GeneralQuestion.new(
       title: params[:title],
       description: params[:description],
       course_id: params[:course_id],
       student_id: student.id
     )
 
-    if @question.errors.any?
+    if @question.save
       @general_question_votes = @question.general_question_votes.count
       respond_to do |format|
         format.js
       end
-
-    else
+    elsif @question.errors.any?
       flash[:notice] = "Il manque un titre à ta question."
     end
     # redirect_to request.referer
