@@ -1,5 +1,5 @@
 <h1><%= @course.title %></h1>
-<h2>Par <%= @course.teacher.name %> </h2>
+<h2>Par <%= @course.creator.name %> </h2>
 <p><%= @course.description %></p>
 <p><%= @course.resource %></p>
 
@@ -8,10 +8,10 @@
 <%= step.title %>
 <%= step.description %>
 
-<% if step.students.where(id: current_student.id).exists? %>
- vous avez validé cette étape <%= link_to("✗", course_step_steps_student_path(@course.id, step.id, StepStudent.find_by(student: current_student, step: step)), method: :delete) %>
+<% if step.attendees.where(id: current_person.id).exists? %>
+ vous avez validé cette étape <%= link_to("✗", course_step_steps_person_path(@course.id, step.id, StepPerson.find_by(attendee: current_person, step: step)), method: :delete) %>
 <% else %>
-<%= link_to("✓", course_step_steps_students_path(@course.id, step.id), method: :post) %>
+<%= link_to("✓", course_step_steps_people_path(@course.id, step.id), method: :post) %>
 <% end %>
 <%= step.percentage %>% des étudiants ont fini cette étape
 <%  step.percentage.to_i > 100 ? x = 1 : x = (step.percentage.to_f / 100).to_f %>

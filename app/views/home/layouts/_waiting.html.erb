@@ -1,30 +1,24 @@
     <h1>En attendant mieux !</h1>
     <p></p>
-    
+
     <ul>
-    <% if current_student || current_teacher %>
+    <% if current_person %>
       <div>
-        <% if student_signed_in? || teacher_signed_in? %>
+        <% if person_signed_in?  %>
         <li>
-          <%= student_signed_in? ? current_student.email : current_teacher.email %> connecté
+          <%=  current_person.email if person_signed_in?  %> connecté
         </li>
         <li>
-          <% if student_signed_in? %>
-            <%= link_to "profil", edit_student_registration_path(current_student.id) %>
-          <% else %>
-            <%= link_to "profil", edit_teacher_registration_path(current_teacher.id) %>
+          <% if person_signed_in? %>
+            <%= link_to "profil", edit_person_registration_path(current_person.id) %>
+            <% else %>
+              <%= link_to "deconnexion", destroy_person_session_path, method: "delete" %>
           <% end %>
         </li>
-        <li>
-          <% if student_signed_in? %>
-            <%= link_to "deconnexion", destroy_teacher_session_path, method: "delete" %>
-          <% else %>
-            <%= link_to "deconnexion", destroy_teacher_session_path, method: "delete" %>
-          <% end %>
-        </li>
+        
         <% end %>
       </div>
-    
+
     </ul>
     <% else %>
       <div>
@@ -32,23 +26,16 @@
           <li>
             Aucun utilisateur connecté <br><br>
           </li>
-          Etudiant ? <br>
+          Nouveau ? ? <br>
           <li>
-            <%= link_to "inscription", new_student_registration_path %>
+            <%= link_to "inscription", new_person_registration_path %>
           </li>
           <li>
-            <%= link_to "connexion", new_student_session_path %>
+            <%= link_to "connexion", new_person_session_path %>
           </li>
           <br>
-          Enseignant ? <br>
-          <li>
-            <%= link_to "inscription", new_teacher_registration_path %>
-          </li>
-          <li>
-            <%= link_to "connexion", new_student_session_path %>
-          </li>
         </ul>
       </div>
-    
+
     <% end %>
     </div>
