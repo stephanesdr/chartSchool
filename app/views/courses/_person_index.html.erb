@@ -1,6 +1,6 @@
-<h3>Mes cours passés</h3>
+<h1>Mes cours à venir</h1>
 
-  <% if !@archived_courses_as_attendee.count.zero? %>
+  <% if @archived_courses %>
   <table style="width:100%">
     <tr>
       <th>Titre</th>
@@ -8,31 +8,7 @@
       <th>Date</th>
       <th>Link</th>
     </tr>
-    <% @archived_courses_as_attendee.each do |course| %>
-    <tr>
-      <td><%= course.title %></td>
-      <td><%= course.creator.name %></td>
-      <td><%= course.start_time %></td>
-      <td><%= link_to 'lien', course_path(course) %></td>
-    </tr>
-    <% end %>
-  <% else %>
-    <p>Aucun cours archivé</p>
-
-  <% end %>
-</table>
-
-<h3>Mes cours à venir</h3>
-
-  <% if !@pending_courses_as_attendee.count.zero? %>
-  <table style="width:100%">
-    <tr>
-      <th>Titre</th>
-      <th>Enseignant</th>
-      <th>Date</th>
-      <th>Link</th>
-    </tr>
-    <% @pending_courses_as_attendee.each do |course| %>
+    <% @archived_courses.each do |course| %>
     <tr>
       <td><%= course.title %></td>
       <td><%= course.creator.name %></td>
@@ -42,5 +18,28 @@
     <% end %>
   <% else %>
     <p>Aucun cours à venir</p>
+  <% end %>
+  </table>
+
+<h1>Mes cours passés</h1>
+
+  <% if @pending_courses %>
+  <table style="width:100%">
+    <tr>
+      <th>Titre</th>
+      <th>Enseignant</th>
+      <th>Date</th>
+      <th>Link</th>
+    </tr>
+    <% @pending_courses.each do |course| %>
+    <tr>
+      <td><%= course.title %></td>
+      <td><%= course.creator.name %></td>
+      <td><%= course.start_time %></td>
+      <td><%= link_to 'lien', course_path(course) %></td>
+    </tr>
+    <% end %>
+  <% else %>
+    <p>Aucun cours archivé</p>
   <% end %>
   </table>
