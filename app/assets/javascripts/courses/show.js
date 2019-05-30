@@ -83,7 +83,7 @@ function getQuestions(questions)
 function hasVoted(user,question)
 {
   var arr = [];
-  question.general_question_votes.forEach(function(e){if (e.student_id == user.id){arr.push(e)};});
+  question.general_question_votes.forEach(function(e){if (e.attendee_id == user.id){arr.push(e)};});
   return arr.length >= 1 ;
 }
 
@@ -107,4 +107,4 @@ function questionCount(questions)
    // console.log("initialQuestionsCount ->" + initialQuestionsCount);
 }
 
- //gon.watch( "questions" , {interval: 1000}, getQuestions );
+ gon.watch( "questions" , {interval: 1000}, getQuestions );
