@@ -86,7 +86,6 @@ puts "course_table is now adjusted with person_table"
 #   p "Person #{i} : créé"
 # end
 
-
 # 1.upto(50) do |i|
 #   Course.create!(
 #     title: Faker::Educator.course_name,
