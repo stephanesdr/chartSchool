@@ -12,47 +12,47 @@ require 'faker'
 
 #-----------------TRANSFER TEACHER AND STUDENT TABLES TO USER TABLE-------------------------
 
-# GeneralQuestion.all.each { |question| question.update(attendee: nil) }
-# GeneralQuestionVote.all.each { |vote| vote.update(attendee: nil) }
-# Attendance.all.each { |atd| atd.update(attendee: nil) }
-# Course.all.each { |course| course.update(creator: nil) }
-# StepPerson.all.each { |stp| StepPerson.delete(stp) }
-# GroupPerson.all.each { |grp| GroupPerson.delete(grp) }
-# puts "Junction Tables forgot person :'( "
-#
-# Person.all.each { |person| Person.destroy(person.id) }
-#
-# puts "Clear whole person_table : done"
-#
-# ActiveRecord::Base.connection.reset_pk_sequence!('people')
-# puts "Reinitialisation of PK for person_table : done"
-#
-# Teacher.all.each { |teacher| Person.create(name: teacher.name, email: teacher.email, password: teacher.encrypted_password, created_at: teacher.created_at, confirmed_at: teacher.confirmed_at ) }
-# puts "teacher_table is now copied inside person_table"
-#
-# Student.all.each { |student| Person.create(name: student.name, email: student.email, password: student.encrypted_password, created_at: student.created_at, confirmed_at: student.confirmed_at) }
-# puts "student_table is now copied inside person_table"
-#
-# Attendance.all.each { |atd| atd.update( attendee_id: Person.find_by(email: Student.find(atd.student_id).email ).id ) }
-# puts "attendance_table is now adjusted with person_table"
-#
-# GeneralQuestion.all.each  { |question| question.update( attendee_id: Person.find_by(email: Student.find(question.student_id).email ).id ) }
-# puts "general_question_table is now adjusted with person_table"
-#
-# GeneralQuestionVote.all.each { |question_vote| question_vote.update( attendee_id: Person.find_by(email: Student.find(question_vote.student_id).email ).id ) }
-# puts "general_question_vote_table is now adjusted with person_table"
-#
-# StepStudent.all.each { |step_student| StepPerson.create(attendee_id: Person.find_by(email: Student.find(step_student.student_id).email ).id, step_id: step_student.step_id ) }
-# puts "StepPerson_table is now created with person_table"
-#
-# GroupStudent.all.each { |group_student| GroupPerson.create(attendee_id: Person.find_by(email: Student.find(group_student.student_id).email ).id, group_id: group_student.group_id ) }
-# puts "StepPerson_table is now created with person_table"
-#
-# Course.all.each do |course|
-#   course.creator_id = course.teacher.id
-#   course.save(validate: false)
-# end
-# puts "course_table is now adjusted with person_table"
+GeneralQuestion.all.each { |question| question.update(attendee: nil) }
+GeneralQuestionVote.all.each { |vote| vote.update(attendee: nil) }
+Attendance.all.each { |atd| atd.update(attendee: nil) }
+Course.all.each { |course| course.update(creator: nil) }
+StepPerson.all.each { |stp| StepPerson.delete(stp) }
+GroupPerson.all.each { |grp| GroupPerson.delete(grp) }
+puts "Junction Tables forgot person :'( "
+
+Person.all.each { |person| Person.destroy(person.id) }
+
+puts "Clear whole person_table : done"
+
+ActiveRecord::Base.connection.reset_pk_sequence!('people')
+puts "Reinitialisation of PK for person_table : done"
+
+Teacher.all.each { |teacher| Person.create(name: teacher.name, email: teacher.email, password: teacher.encrypted_password, created_at: teacher.created_at, confirmed_at: teacher.confirmed_at ) }
+puts "teacher_table is now copied inside person_table"
+
+Student.all.each { |student| Person.create(name: student.name, email: student.email, password: student.encrypted_password, created_at: student.created_at, confirmed_at: student.confirmed_at) }
+puts "student_table is now copied inside person_table"
+
+Attendance.all.each { |atd| atd.update( attendee_id: Person.find_by(email: Student.find(atd.student_id).email ).id ) }
+puts "attendance_table is now adjusted with person_table"
+
+GeneralQuestion.all.each  { |question| question.update( attendee_id: Person.find_by(email: Student.find(question.student_id).email ).id ) }
+puts "general_question_table is now adjusted with person_table"
+
+GeneralQuestionVote.all.each { |question_vote| question_vote.update( attendee_id: Person.find_by(email: Student.find(question_vote.student_id).email ).id ) }
+puts "general_question_vote_table is now adjusted with person_table"
+
+StepStudent.all.each { |step_student| StepPerson.create(attendee_id: Person.find_by(email: Student.find(step_student.student_id).email ).id, step_id: step_student.step_id ) }
+puts "StepPerson_table is now created with person_table"
+
+GroupStudent.all.each { |group_student| GroupPerson.create(attendee_id: Person.find_by(email: Student.find(group_student.student_id).email ).id, group_id: group_student.group_id ) }
+puts "StepPerson_table is now created with person_table"
+
+Course.all.each do |course|
+  course.creator_id = course.teacher.id
+  course.save(validate: false)
+end
+puts "course_table is now adjusted with person_table"
 
 # ____________________** DEVELOPEMENT SEEDS DB V 2.0 **____________________
 
