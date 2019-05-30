@@ -1,13 +1,13 @@
-<h1>Mes cours à venir</h1>
+<h3>Mes cours à venir</h3>
 
-  <% if @archived_courses %>
+  <% if !@archived_courses_as_teacher.count.zero? %>
   <table style="width:100%">
     <tr>
       <th>Titre</th>
       <th>Date</th>
       <th>Link</th>
     </tr>
-    <% @archived_courses.each do |course| %>
+    <% @archived_courses_as_teacher.each do |course| %>
     <tr>
       <td><%= course.title %></td>
       <td><%= course.start_time %></td>
@@ -20,16 +20,16 @@
   <% end %>
   </table>
 
-<h1>Mes cours passés</h1>
+<h3>Mes cours passés</h3>
 
-  <% if @pending_courses %>
+  <% if !@pending_courses_as_teacher.count.zero? %>
   <table style="width:100%">
     <tr>
       <th>Titre</th>
       <th>Date</th>
       <th>Link</th>
     </tr>
-    <% @pending_courses.each do |course| %>
+    <% @pending_courses_as_teacher.each do |course| %>
     <tr>
       <td><%= course.title %></td>
       <td><%= course.start_time %></td>
