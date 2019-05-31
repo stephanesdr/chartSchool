@@ -60,4 +60,10 @@ class CoursesController < ApplicationController
     @teacher = current_person
     @student = current_person
   end
+
+  def archived_courses
+    @archived_courses_as_attendee = current_person.archived_courses if current_person
+
+    @archived_courses_as_teacher = current_person.archived_courses.select { |course| course.creator == current_person } if current_person
+  end
 end
