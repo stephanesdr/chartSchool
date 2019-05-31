@@ -1,28 +1,4 @@
-<h3>Mes cours à venir</h3>
-
-  <% if !@archived_courses_as_teacher.count.zero? %>
-  <table style="width:100%">
-    <tr>
-      <th>Titre</th>
-      <th>Date</th>
-      <th>Link</th>
-    </tr>
-    <% @archived_courses_as_teacher.each do |course| %>
-    <tr>
-      <td><%= course.title %></td>
-      <td><%= course.start_time %></td>
-      <td><%= link_to 'lien', course_path(course) %></td>
-    </tr>
-
-    <% end %>
-  <% else %>
-    <p>Aucun cours à venir</p>
-  <% end %>
-  </table>
-
-<h3>Mes cours passés</h3>
-
-  <% if !@pending_courses_as_teacher.count.zero? %>
+  <% if @pending_courses_as_teacher.present? %>
   <table style="width:100%">
     <tr>
       <th>Titre</th>
