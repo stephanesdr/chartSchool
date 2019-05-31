@@ -35,6 +35,55 @@
 }
 
 
+
+label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    color: $blue;
+}
+
+.label_tag {
+    display: inline-block;
+}
+
+.field {
+    padding-bottom: 0.5em;
+}
+
+
+input {
+    width: 20vw;
+    color: $blue;
+    border: 2px solid #38d9d340;
+    background-color: #38d9d347;
+    font-size: $f-size-4;
+    font-weight: $f-semi-bold;
+    padding: 0.5em;
+    border-width: 0px 0px 5px 0px;
+    border-radius: 5px;
+}
+
+// input:focus, input.focus {
+//         border: 2px solid $blue;
+//         background-color: #38d9d347;
+//         border-radius: 5px;
+//         border-width: 0px 0px 5px 0px;
+// }
+
+
+input#person_remember_me {
+    width: auto;
+}
+
+input.btn.btn-info.f-size-1.f-bold {
+    width: 150px;
+    height: 55px;
+}
+
+
+.row-links {
+    bottom: -120px;
+}
 .logo { position: relative; top: 31%;}
 
 @include media-breakpoint-down(sm) {

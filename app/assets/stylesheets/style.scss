@@ -5,6 +5,12 @@ html, body {
   font-family: $font-source;
 
 }
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
 
 a:hover {
   text-decoration: none;
