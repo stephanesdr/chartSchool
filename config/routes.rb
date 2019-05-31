@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'people/index'
   devise_for :people, :controllers => { registrations: "registrations" }
-  
-  root to: 'connexion/start#index' 
+
+  root to: 'connexion/start#index'
 
   namespace :connexion do
     resources :start, only: %i[index]
