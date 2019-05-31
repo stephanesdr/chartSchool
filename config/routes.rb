@@ -27,6 +27,9 @@ Rails.application.routes.draw do
     resources :template_course, only: %i[create]
     resources :step_templates, only: %i[create destroy]
   end
+
+  get '/archived_courses/', to: 'courses#archived_courses'
+
   resources :courses, only: %i[new create show index] do
     resources :course_template, only: %i[create]
     resources :attendances, only: %i[create]
