@@ -19,7 +19,7 @@ class CoursesController < ApplicationController
       flash[:warning] = "Echec de création de cours, veuillez à ce que tout les champs soit correctement rempli"
       redirect_to request.referer
     elsif flash[:notice] = "Cours correctement créé"
-      redirect_to root_path
+      redirect_to course_path(@course)
     end
   end
 
