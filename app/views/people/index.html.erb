@@ -1,0 +1,22 @@
+<table style="width:100%">
+  <tr>
+    <th>Nom</th>
+    <th>Email</th>
+    <th>Ajouter à un groupe</th>
+    <th>Inviter à un cours</th>
+    <th>Nb cours proposés</th>
+    <th>Nb cours archivés</th>
+    <th>Nb cours à venir</th>
+  </tr>
+  <% @people.each do |person| %>
+  <tr>
+    <td><%= person.name %></td>
+    <td><%= person.email %></td>
+    <td></td>
+    <td></td>
+    <td><%= person.courses_as_creator.count %></td>
+    <td><%= person.archived_courses.count %></td>
+    <td><%= person.pending_courses.count %></td>
+  </tr>
+  <% end %>
+</table>
