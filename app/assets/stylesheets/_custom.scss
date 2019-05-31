@@ -124,8 +124,8 @@ $light-grey: #9A9A9A;
 }
 
 .btn-info:focus, .btn-info.focus {
-    box-shadow: 0 0 0 0.35rem rgb(113, 255, 250);
-}
+        box-shadow: 0 0 0 0.35rem rgb(113, 255, 250);
+    }
 .btn-info:hover {
     color: #ffffff;
     background-color: #38d9d3;
@@ -137,6 +137,13 @@ $light-grey: #9A9A9A;
     background-color: #1faca7;
     border-color: #15a19d;
 }
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #38d9d3;
+    background-color: transparent; 
+    border: 1px solid;
+}
+
 
 .nav-link {
     color: #38d9d3;
