@@ -32,6 +32,7 @@ class Attendance < ApplicationRecord
   after_create :invitation_send
 
   def invitation_send
-    StudentMailer.invitation(self).deliver_now
+    StudentMailer.invitation(self).deliver_now unless PendingAttendance.where(email: attendee.email).exists?
+    PendingAttendance.where(email: attendee.email).find_each(&:destroy)
   end
 end
