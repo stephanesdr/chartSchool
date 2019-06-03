@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'people/index'
   devise_for :people, :controllers => { registrations: "registrations" }
 
   root to: 'connexion/start#index'
@@ -17,6 +16,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :home, only: %i[index]
+  resources :people, only: %i[index]
+  resources :groups, only: %i[index]
 
   resources :general_question_votes, only: %i[destroy ]
   resources :general_questions, only: %i[new create index update show destroy] do
