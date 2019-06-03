@@ -1,0 +1,14 @@
+<h1>Liste du groupe <%= @group.name %></h1>
+
+<table style="width:100%">
+  <tr>
+    <th>Nom</th>
+    <th>Email</th>
+  </tr>
+  <% @group.attendees.each do |attendee| %>
+  <tr>
+    <td><%= attendee.name %></td>
+    <td><%= attendee.email %></td>
+  </tr>
+  <% end %>
+</table>

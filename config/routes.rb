@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   resources :home, only: %i[index]
   resources :people, only: %i[index]
-  resources :groups, only: %i[index]
+  resources :groups, only: %i[index show]
 
   resources :general_question_votes, only: %i[destroy ]
   resources :general_questions, only: %i[new create index update show destroy] do
