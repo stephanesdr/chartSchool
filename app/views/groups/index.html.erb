@@ -1,0 +1,10 @@
+<table style="width:100%">
+  <tr>
+    <th>Nom</th>
+  </tr>
+  <% @groups.each do |group| %>
+  <tr>
+    <td><%= group.name %></td>
+  </tr>
+  <% end %>
+</table>
