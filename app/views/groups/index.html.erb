@@ -1,0 +1,16 @@
+<h1>Liste de mes groupes</h1>
+
+<table style="width:100%">
+  <tr>
+    <th>Nom du groupe</th>
+    <th>Nombre d'étudiants</th>
+    <th></th>
+  </tr>
+  <% @current_person_groups.each do |group| %>
+  <tr>
+    <td><%= group.name %></td>
+    <td><%= group.attendees.count %></td>
+    <td><%= link_to 'vue du groupe', group_path(group) %></td>
+  </tr>
+  <% end %>
+</table>

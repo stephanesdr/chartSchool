@@ -92,4 +92,12 @@ class Person < ApplicationRecord
       pending.destroy
     end
   end
+
+  def my_groups
+    person_groups = []
+    GroupPerson.where(attendee_id: id).find_each do |group_person|
+      person_groups << group_person.group
+    end
+    person_groups
+  end
 end
