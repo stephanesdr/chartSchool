@@ -1,5 +1,6 @@
-class GroupsController < ApplicationController
+# frozen_string_literal: true
 
+class GroupsController < ApplicationController
   def new
     @group = Group.new
   end
