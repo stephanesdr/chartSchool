@@ -1,0 +1,11 @@
+<h1>Nouveau groupe</h1>
+
+<%= form_for @group do |f| %>
+  <div class="form-group">
+    <%= f.text_field :name, placeholder: 'Nom du groupe', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= submit_tag "Créer le cours", class: "btn btn-primary" %>
+  </div>
+<% end %>
