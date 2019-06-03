@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class TemplatesController < ApplicationController
+  include TemplatesHelper
+  before_action :authenticate_person!, only: %i[new create]
+  before_action :not_the_creator, only: %i[show edit]
+
   def new
     @template = Template.all
   end
