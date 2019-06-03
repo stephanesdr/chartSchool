@@ -11,7 +11,7 @@
 #
 
 class Group < ApplicationRecord
-  # validates :title, presence: true
+  validates :name, presence: true
 
   has_many :group_people, dependent: :destroy
   has_many :attendees, class_name: "Person", through: :group_people
