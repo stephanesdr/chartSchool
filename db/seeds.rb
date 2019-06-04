@@ -70,7 +70,7 @@ require 'faker'
 #     confirmed_at: Time.zone.now
 #   )
 # end
-
+#
 # random_people = Person.create!(
 #   name: "Person",
 #   email: "person@yopmail.com",
@@ -112,8 +112,7 @@ require 'faker'
 #   end
 #   p " * Attendance for random people  #{i} : créé"
 # end
-#
-#
+
 # 1.upto(100) do |i|
 #   Step.create!(
 #     title: Faker::Appliance.equipment,
@@ -141,9 +140,9 @@ require 'faker'
 #   )
 #   p "GeneralQuestion #{i} : créé"
 # end
-#
-# # __________JUNCTION TABLE SEEDS DB V 2.0______________
-#
+
+# __________JUNCTION TABLE SEEDS DB V 2.0______________
+
 # 1.upto(50) do |i|
 #   courseid = Course.all.sample.id
 #   attendeeid = Person.all.sample.id
@@ -155,7 +154,7 @@ require 'faker'
 #   end
 #   p "Attendance #{i} : créé"
 # end
-#
+
 # 1.upto(100) do |i|
 #   GroupPerson.create!(
 #     attendee_id: Person.all.sample.id,

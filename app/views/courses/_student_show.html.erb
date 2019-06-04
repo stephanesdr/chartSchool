@@ -4,18 +4,14 @@
 <p><%= @course.resource %></p>
 
 
-<% @steps.each do |step| %>
-<%= step.title %>
-<br>
-<%= step.description %>
-<br>
-<%= step.percentage %>% des étudiants ont fini cette étape
-<%  step.percentage.to_i > 100 ? x = 1 : x = (step.percentage.to_f / 100).to_f %>
-<%= progress_bar x , label: true, style: 'min-width: 20px' %>
-<% if step.attendees.where(id: current_person.id).exists? %>
- vous avez validé cette étape <%= link_to("✗", course_step_steps_person_path(@course.id, step.id, StepPerson.find_by(attendee: current_person, step: step)), method: :delete) %>
-<% else %>
-<%= link_to("✓", course_step_steps_people_path(@course.id, step.id), method: :post) %>
-<% end %>
-<br><br>
-<% end %>
+
+<div id="step-div">
+<h3>ÉTAPES</h3>
+<div id="step_container">
+
+</div>
+</div>
+<%= javascript_include_tag 'courses/show' %>
+
+
+<%= javascript_include_tag 'progressbar/progressbar_student' %>
