@@ -12,7 +12,13 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.config.assets.precompile += %w(menu-toggle.js)
 
 Rails.application.config.assets.precompile += %w(courses/show.js)
+Rails.application.config.assets.precompile += %w(progressbar/progressbar_student.js)
+Rails.application.config.assets.precompile += %w(progressbar/progressbar_teacher.js)
+Rails.application.config.assets.precompile += %w(progressbar/loading-bar.js)
+Rails.application.config.assets.precompile += %w(loading-bar.css)
 Rails.application.config.assets.precompile += %w(general_questions/_general_questions_index.css)
+Rails.application.config.assets.precompile += %w(courses/show.css)
+
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
