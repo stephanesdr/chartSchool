@@ -74,7 +74,6 @@ class Student < ApplicationRecord
 
     PendingAttendance.where(email: email).find_each do |pending|
       Attendance.create(student: self, course: pending.course)
-      pending.destroy
     end
   end
 end

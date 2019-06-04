@@ -26,6 +26,7 @@
 class Person < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  after_create :pending_attendances?
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :email,
@@ -81,6 +82,15 @@ class Person < ApplicationRecord
       pending << course if course.start_time > Time.zone.now
     end
     pending
+  end
+
+  def pending_attendances?
+    return unless PendingAttendance.where(email: email).exists?
+
+    PendingAttendance.where(email: email).find_each do |pending|
+      Attendance.create(attendee: self, course: pending.course)
+      pending.destroy
+    end
   end
 
   def my_groups

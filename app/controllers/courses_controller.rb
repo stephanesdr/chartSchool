@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
 class CoursesController < ApplicationController
-  # include CoursesHelper
-  # before_action :authenticate_teacher!, only: %i[new create]
-  # before_action :not_authorized_teacher, only: %i[show]
+  include CoursesHelper
+  before_action :authenticate_person!, only: %i[new create]
+  before_action :not_authorized_person, only: %i[show]
   # before_action :not_authorized_student, only: %i[show]
-  # before_action :no_unregistered_student, only: %i[show]
 
   def new
     @courses = Course.all
