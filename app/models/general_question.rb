@@ -43,6 +43,6 @@ class GeneralQuestion < ApplicationRecord
 
   def vote_for_own_question
     # To change : student to user when the user table will be created
-    GeneralQuestionVote.create(general_question: self, student: student)
+    GeneralQuestionVote.create(general_question: self, attendee: attendee)
   end
 end
