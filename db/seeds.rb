@@ -12,48 +12,54 @@ require 'faker'
 
 #-----------------TRANSFER TEACHER AND STUDENT TABLES TO USER TABLE-------------------------
 
-GeneralQuestion.all.each { |question| question.update(attendee: nil) }
-GeneralQuestionVote.all.each { |vote| vote.update(attendee: nil) }
-Attendance.all.each { |atd| atd.update(attendee: nil) }
-Course.all.each { |course| course.update(creator: nil) }
-StepPerson.all.each { |stp| StepPerson.delete(stp) }
-GroupPerson.all.each { |grp| GroupPerson.delete(grp) }
-puts "Junction Tables forgot person :'( "
+# GeneralQuestion.all.each { |question| question.update(attendee: nil) }
+# GeneralQuestionVote.all.each { |vote| vote.update(attendee: nil) }
+# Attendance.all.each { |atd| atd.update(attendee: nil) }
+# Course.all.each { |course| course.update(creator: nil) }
+# StepPerson.all.each { |stp| StepPerson.delete(stp) }
+# GroupPerson.all.each { |grp| GroupPerson.delete(grp) }
+# puts "Junction Tables forgot person :'( "
+#
+# Person.all.each { |person| Person.destroy(person.id) }
+#
+# puts "Clear whole person_table : done"
+#
+# ActiveRecord::Base.connection.reset_pk_sequence!('people')
+# puts "Reinitialisation of PK for person_table : done"
+#
+# Teacher.all.each do |teacher|
+#    puts teacher.encrypted_password
+#    Person.create(name: teacher.name, email: teacher.email, password: BCrypt::Password.new(teacher.encrypted_password), created_at: teacher.created_at, confirmed_at: teacher.confirmed_at )
+#    puts "-->#{Person.last.encrypted_password}"
+#    puts "\n"
+#  end
+# puts "teacher_table is now copied inside person_table"
+#
+# Student.all.each { |student| Person.create(name: student.name, email: student.email, password: BCrypt::Password.new(student.encrypted_password), created_at: student.created_at, confirmed_at: student.confirmed_at) }
+# puts "student_table is now copied inside person_table"
+#
+# Attendance.all.each { |atd| atd.update( attendee_id: Person.find_by(email: Student.find(atd.student_id).email ).id ) }
+# puts "attendance_table is now adjusted with person_table"
+#
+# GeneralQuestion.all.each  { |question| question.update( attendee_id: Person.find_by(email: Student.find(question.student_id).email ).id ) }
+# puts "general_question_table is now adjusted with person_table"
+#
+# GeneralQuestionVote.all.each { |question_vote| question_vote.update( attendee_id: Person.find_by(email: Student.find(question_vote.student_id).email ).id ) }
+# puts "general_question_vote_table is now adjusted with person_table"
+#
+# StepStudent.all.each { |step_student| StepPerson.create(attendee_id: Person.find_by(email: Student.find(step_student.student_id).email ).id, step_id: step_student.step_id ) }
+# puts "StepPerson_table is now created with person_table"
+#
+# GroupStudent.all.each { |group_student| GroupPerson.create(attendee_id: Person.find_by(email: Student.find(group_student.student_id).email ).id, group_id: group_student.group_id ) }
+# puts "StepPerson_table is now created with person_table"
+#
+# Course.all.each do |course|
+#   course.creator_id = course.teacher.id
+#   course.save(validate: false)
+# end
+# puts "course_table is now adjusted with person_table"
 
-Person.all.each { |person| Person.destroy(person.id) }
-
-puts "Clear whole person_table : done"
-
-ActiveRecord::Base.connection.reset_pk_sequence!('people')
-puts "Reinitialisation of PK for person_table : done"
-
-Teacher.all.each { |teacher| Person.create(name: teacher.name, email: teacher.email, password: teacher.encrypted_password, created_at: teacher.created_at, confirmed_at: teacher.confirmed_at ) }
-puts "teacher_table is now copied inside person_table"
-
-Student.all.each { |student| Person.create(name: student.name, email: student.email, password: student.encrypted_password, created_at: student.created_at, confirmed_at: student.confirmed_at) }
-puts "student_table is now copied inside person_table"
-
-Attendance.all.each { |atd| atd.update( attendee_id: Person.find_by(email: Student.find(atd.student_id).email ).id ) }
-puts "attendance_table is now adjusted with person_table"
-
-GeneralQuestion.all.each  { |question| question.update( attendee_id: Person.find_by(email: Student.find(question.student_id).email ).id ) }
-puts "general_question_table is now adjusted with person_table"
-
-GeneralQuestionVote.all.each { |question_vote| question_vote.update( attendee_id: Person.find_by(email: Student.find(question_vote.student_id).email ).id ) }
-puts "general_question_vote_table is now adjusted with person_table"
-
-StepStudent.all.each { |step_student| StepPerson.create(attendee_id: Person.find_by(email: Student.find(step_student.student_id).email ).id, step_id: step_student.step_id ) }
-puts "StepPerson_table is now created with person_table"
-
-GroupStudent.all.each { |group_student| GroupPerson.create(attendee_id: Person.find_by(email: Student.find(group_student.student_id).email ).id, group_id: group_student.group_id ) }
-puts "StepPerson_table is now created with person_table"
-
-Course.all.each do |course|
-  course.creator_id = course.teacher.id
-  course.save(validate: false)
-end
-puts "course_table is now adjusted with person_table"
-
+# #################################################################################################################
 # ____________________** DEVELOPEMENT SEEDS DB V 2.0 **____________________
 
 # unless Person.find_by(email: "teacher@yopmail.com")
@@ -64,8 +70,6 @@ puts "course_table is now adjusted with person_table"
 #     confirmed_at: Time.zone.now
 #   )
 # end
-#
-#
 
 # random_people = Person.create!(
 #   name: "Person",
@@ -74,7 +78,7 @@ puts "course_table is now adjusted with person_table"
 #   confirmed_at: Time.zone.now
 # )
 # p "*** Usable random user is now created with \ email: person@yopmail.com \ password : 000000 "
-
+#
 # 1.upto(10) do |i|
 #   name = Faker::Name.unique.name
 #   Person.create!(
@@ -85,7 +89,7 @@ puts "course_table is now adjusted with person_table"
 #   )
 #   p "Person #{i} : créé"
 # end
-
+#
 # 1.upto(50) do |i|
 #   Course.create!(
 #     title: Faker::Educator.course_name,
@@ -97,7 +101,7 @@ puts "course_table is now adjusted with person_table"
 #   )
 #   p "Course #{i} : créé"
 # end
-
+#
 # 1.upto(20) do |i|
 #   courseid = Course.all.sample.id
 #   unless Attendance.find_by(course_id: courseid, attendee_id: random_people.id)
@@ -108,7 +112,7 @@ puts "course_table is now adjusted with person_table"
 #   end
 #   p " * Attendance for random people  #{i} : créé"
 # end
-
+#
 #
 # 1.upto(100) do |i|
 #   Step.create!(
@@ -119,14 +123,14 @@ puts "course_table is now adjusted with person_table"
 #   )
 #   p "Step #{i} : créé"
 # end
-
+#
 # 1.upto(20) do |i|
 #   Group.create!(
 #     name: Faker::Science.scientist,
 #   )
 #   p "Group #{i} : créé"
 # end
-
+#
 # 1.upto(200) do |i|
 #   GeneralQuestion.create!(
 #     title: "#{Faker::Books::Lovecraft.sentence}  : #{Faker::Bank.name}?",
@@ -137,9 +141,9 @@ puts "course_table is now adjusted with person_table"
 #   )
 #   p "GeneralQuestion #{i} : créé"
 # end
-
+#
 # # __________JUNCTION TABLE SEEDS DB V 2.0______________
-
+#
 # 1.upto(50) do |i|
 #   courseid = Course.all.sample.id
 #   attendeeid = Person.all.sample.id
@@ -151,7 +155,7 @@ puts "course_table is now adjusted with person_table"
 #   end
 #   p "Attendance #{i} : créé"
 # end
-
+#
 # 1.upto(100) do |i|
 #   GroupPerson.create!(
 #     attendee_id: Person.all.sample.id,
@@ -159,7 +163,7 @@ puts "course_table is now adjusted with person_table"
 #   )
 #   p "GroupPerson #{i} : créé"
 # end
-
+#
 # 1.upto(500) do |i|
 #   stepid = Step.all.sample.id
 #   personid = Person.all.sample.id
@@ -171,7 +175,7 @@ puts "course_table is now adjusted with person_table"
 #   end
 #   p "ChekStep #{i} : créé"
 # end
-
+#
 # 1.upto(100) do |i|
 #   GeneralQuestionVote.create!(
 #     general_question_id: GeneralQuestion.all.sample.id,
@@ -192,7 +196,7 @@ puts "course_table is now adjusted with person_table"
 #     confirmed_at: Time.zone.now
 #   )
 # end
-
+#
 # unless Student.find_by(email: "student@yopmail.com")
 #   Student.create!(
 #     name: "student",
@@ -201,7 +205,7 @@ puts "course_table is now adjusted with person_table"
 #     confirmed_at: Time.zone.now
 #   )
 # end
-
+# #
 # 1.upto(10) do |i|
 #   name = Faker::Name.unique.name
 #   Teacher.create!(
@@ -212,7 +216,7 @@ puts "course_table is now adjusted with person_table"
 #   )
 #   p "Teacher #{i} : créé"
 # end
-
+#
 # 1.upto(10) do |i|
 #   name = Faker::Name.unique.name
 #   Student.create!(
@@ -223,7 +227,7 @@ puts "course_table is now adjusted with person_table"
 #   )
 #   p "Student #{i} : créé"
 # end
-
+#
 # 1.upto(50) do |i|
 #   Course.create!(
 #     title: Faker::Educator.course_name,
@@ -235,7 +239,7 @@ puts "course_table is now adjusted with person_table"
 #   )
 #   p "Course #{i} : créé"
 # end
-
+#
 # 1.upto(100) do |i|
 #   Step.create!(
 #     title: Faker::Appliance.equipment,
@@ -245,14 +249,14 @@ puts "course_table is now adjusted with person_table"
 #   )
 #   p "Step #{i} : créé"
 # end
-
+#
 # 1.upto(20) do |i|
 #   Group.create!(
 #     name: Faker::Science.scientist,
 #   )
 #   p "Group #{i} : créé"
 # end
-
+#
 # 1.upto(200) do |i|
 #   GeneralQuestion.create!(
 #     title: "#{Faker::Books::Lovecraft.sentence}  : #{Faker::Bank.name}?",
@@ -263,9 +267,9 @@ puts "course_table is now adjusted with person_table"
 #   )
 #   p "GeneralQuestion #{i} : créé"
 # end
-
+#
 # # __________JUNCTION TABLE SEEDS______________
-
+#
 # 1.upto(10) do |i|
 #   courseid = Course.all.sample.id
 #   studentid = Student.all.sample.id
@@ -277,7 +281,7 @@ puts "course_table is now adjusted with person_table"
 #   end
 #   p "Attendance #{i} : créé"
 # end
-
+#
 # 1.upto(50) do |i|
 #   courseid = Course.all.sample.id
 #   attendeeid = Person.all.sample.id
@@ -289,7 +293,7 @@ puts "course_table is now adjusted with person_table"
 #   end
 #   p "Attendance #{i} : créé"
 # end
-
+#
 # 1.upto(100) do |i|
 #   GroupStudent.create!(
 #     student_id: Student.all.sample.id,
@@ -297,7 +301,7 @@ puts "course_table is now adjusted with person_table"
 #   )
 #   p "GroupStudent #{i} : créé"
 # end
-
+#
 # 1.upto(100) do |i|
 #   GroupTeacher.create!(
 #     group_id: Group.all.sample.id,
@@ -305,7 +309,7 @@ puts "course_table is now adjusted with person_table"
 #   )
 #   p "GroupTeacher #{i} : créé"
 # end
-
+#
 # 1.upto(500) do |i|
 #   stepid = Step.all.sample.id
 #   studentid = Student.all.sample.id
@@ -317,7 +321,7 @@ puts "course_table is now adjusted with person_table"
 #   end
 #   p "ChekStep #{i} : créé"
 # end
-
+#
 # 1.upto(100) do |i|
 #   GeneralQuestionVote.create!(
 #     general_question_id: GeneralQuestion.all.sample.id,
