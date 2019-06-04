@@ -35,14 +35,16 @@ class Person < ApplicationRecord
               with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "Email not valid"
             }
   validates :name, presence: true
+
   has_many :templates, dependent: :destroy
-  has_many :step_people, dependent: :destroy
+
+  has_many :step_people, foreign_key: :attendee_id, dependent: :destroy
   has_many :steps, through: :step_people
 
-  has_many :group_people, dependent: :destroy
+  has_many :group_people, foreign_key: :attendee_id, dependent: :destroy
   has_many :groups, through: :group_people
 
-  has_many :attendances, foreign_key: 'attendee_id', dependent: :nullify
+  has_many :attendances, foreign_key: 'attendee_id', dependent: :destroy
   has_many :courses, foreign_key: 'attendee_id', through: :attendances
 
   has_many :general_questions, foreign_key: 'attendee_id', class_name: "GeneralQuestion", dependent: :nullify
@@ -62,8 +64,8 @@ class Person < ApplicationRecord
 
   def all_courses
     arr = []
-    Attendance.where(attendee_id: id).find_each { |atd| arr << atd.course }
-    Course.where(creator_id: id).find_each { |course| arr << course }
+    Attendance.where(attendee_id: id).find_each { |atd| arr << atd.course } if Attendance.where(attendee_id: id).present?
+    Course.where(creator_id: id).find_each { |course| arr << course } if Course.where(creator_id: id).present?
     arr
   end
 

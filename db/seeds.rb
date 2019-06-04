@@ -27,10 +27,15 @@ require 'faker'
 # ActiveRecord::Base.connection.reset_pk_sequence!('people')
 # puts "Reinitialisation of PK for person_table : done"
 #
-# Teacher.all.each { |teacher| Person.create(name: teacher.name, email: teacher.email, password: teacher.encrypted_password, created_at: teacher.created_at, confirmed_at: teacher.confirmed_at ) }
+# Teacher.all.each do |teacher|
+#    puts teacher.encrypted_password
+#    Person.create(name: teacher.name, email: teacher.email, password: BCrypt::Password.new(teacher.encrypted_password), created_at: teacher.created_at, confirmed_at: teacher.confirmed_at )
+#    puts "-->#{Person.last.encrypted_password}"
+#    puts "\n"
+#  end
 # puts "teacher_table is now copied inside person_table"
 #
-# Student.all.each { |student| Person.create(name: student.name, email: student.email, password: student.encrypted_password, created_at: student.created_at, confirmed_at: student.confirmed_at) }
+# Student.all.each { |student| Person.create(name: student.name, email: student.email, password: BCrypt::Password.new(student.encrypted_password), created_at: student.created_at, confirmed_at: student.confirmed_at) }
 # puts "student_table is now copied inside person_table"
 #
 # Attendance.all.each { |atd| atd.update( attendee_id: Person.find_by(email: Student.find(atd.student_id).email ).id ) }
@@ -54,6 +59,7 @@ require 'faker'
 # end
 # puts "course_table is now adjusted with person_table"
 
+# #################################################################################################################
 # ____________________** DEVELOPEMENT SEEDS DB V 2.0 **____________________
 
 # unless Person.find_by(email: "teacher@yopmail.com")
@@ -65,8 +71,6 @@ require 'faker'
 #   )
 # end
 #
-#
-
 # random_people = Person.create!(
 #   name: "Person",
 #   email: "person@yopmail.com",
@@ -74,7 +78,7 @@ require 'faker'
 #   confirmed_at: Time.zone.now
 # )
 # p "*** Usable random user is now created with \ email: person@yopmail.com \ password : 000000 "
-
+#
 # 1.upto(10) do |i|
 #   name = Faker::Name.unique.name
 #   Person.create!(
@@ -85,7 +89,7 @@ require 'faker'
 #   )
 #   p "Person #{i} : créé"
 # end
-
+#
 # 1.upto(50) do |i|
 #   Course.create!(
 #     title: Faker::Educator.course_name,
@@ -97,7 +101,7 @@ require 'faker'
 #   )
 #   p "Course #{i} : créé"
 # end
-
+#
 # 1.upto(20) do |i|
 #   courseid = Course.all.sample.id
 #   unless Attendance.find_by(course_id: courseid, attendee_id: random_people.id)
@@ -108,7 +112,7 @@ require 'faker'
 #   end
 #   p " * Attendance for random people  #{i} : créé"
 # end
-
+#
 #
 # 1.upto(100) do |i|
 #   Step.create!(
@@ -119,14 +123,14 @@ require 'faker'
 #   )
 #   p "Step #{i} : créé"
 # end
-
+#
 # 1.upto(20) do |i|
 #   Group.create!(
 #     name: Faker::Science.scientist,
 #   )
 #   p "Group #{i} : créé"
 # end
-
+#
 # 1.upto(200) do |i|
 #   GeneralQuestion.create!(
 #     title: "#{Faker::Books::Lovecraft.sentence}  : #{Faker::Bank.name}?",
@@ -137,9 +141,9 @@ require 'faker'
 #   )
 #   p "GeneralQuestion #{i} : créé"
 # end
-
+#
 # # __________JUNCTION TABLE SEEDS DB V 2.0______________
-
+#
 # 1.upto(50) do |i|
 #   courseid = Course.all.sample.id
 #   attendeeid = Person.all.sample.id
@@ -151,7 +155,7 @@ require 'faker'
 #   end
 #   p "Attendance #{i} : créé"
 # end
-
+#
 # 1.upto(100) do |i|
 #   GroupPerson.create!(
 #     attendee_id: Person.all.sample.id,
@@ -159,7 +163,7 @@ require 'faker'
 #   )
 #   p "GroupPerson #{i} : créé"
 # end
-
+#
 # 1.upto(500) do |i|
 #   stepid = Step.all.sample.id
 #   personid = Person.all.sample.id
@@ -171,7 +175,7 @@ require 'faker'
 #   end
 #   p "ChekStep #{i} : créé"
 # end
-
+#
 # 1.upto(100) do |i|
 #   GeneralQuestionVote.create!(
 #     general_question_id: GeneralQuestion.all.sample.id,
@@ -192,7 +196,7 @@ require 'faker'
 #     confirmed_at: Time.zone.now
 #   )
 # end
-
+#
 # unless Student.find_by(email: "student@yopmail.com")
 #   Student.create!(
 #     name: "student",
@@ -201,7 +205,7 @@ require 'faker'
 #     confirmed_at: Time.zone.now
 #   )
 # end
-
+# #
 # 1.upto(10) do |i|
 #   name = Faker::Name.unique.name
 #   Teacher.create!(
@@ -212,7 +216,7 @@ require 'faker'
 #   )
 #   p "Teacher #{i} : créé"
 # end
-
+#
 # 1.upto(10) do |i|
 #   name = Faker::Name.unique.name
 #   Student.create!(
@@ -223,7 +227,7 @@ require 'faker'
 #   )
 #   p "Student #{i} : créé"
 # end
-
+#
 # 1.upto(50) do |i|
 #   Course.create!(
 #     title: Faker::Educator.course_name,
@@ -235,7 +239,7 @@ require 'faker'
 #   )
 #   p "Course #{i} : créé"
 # end
-
+#
 # 1.upto(100) do |i|
 #   Step.create!(
 #     title: Faker::Appliance.equipment,
@@ -245,14 +249,14 @@ require 'faker'
 #   )
 #   p "Step #{i} : créé"
 # end
-
+#
 # 1.upto(20) do |i|
 #   Group.create!(
 #     name: Faker::Science.scientist,
 #   )
 #   p "Group #{i} : créé"
 # end
-
+#
 # 1.upto(200) do |i|
 #   GeneralQuestion.create!(
 #     title: "#{Faker::Books::Lovecraft.sentence}  : #{Faker::Bank.name}?",
@@ -263,9 +267,9 @@ require 'faker'
 #   )
 #   p "GeneralQuestion #{i} : créé"
 # end
-
+#
 # # __________JUNCTION TABLE SEEDS______________
-
+#
 # 1.upto(10) do |i|
 #   courseid = Course.all.sample.id
 #   studentid = Student.all.sample.id
@@ -277,7 +281,7 @@ require 'faker'
 #   end
 #   p "Attendance #{i} : créé"
 # end
-
+#
 # 1.upto(50) do |i|
 #   courseid = Course.all.sample.id
 #   attendeeid = Person.all.sample.id
@@ -289,7 +293,7 @@ require 'faker'
 #   end
 #   p "Attendance #{i} : créé"
 # end
-
+#
 # 1.upto(100) do |i|
 #   GroupStudent.create!(
 #     student_id: Student.all.sample.id,
@@ -297,7 +301,7 @@ require 'faker'
 #   )
 #   p "GroupStudent #{i} : créé"
 # end
-
+#
 # 1.upto(100) do |i|
 #   GroupTeacher.create!(
 #     group_id: Group.all.sample.id,
@@ -305,7 +309,7 @@ require 'faker'
 #   )
 #   p "GroupTeacher #{i} : créé"
 # end
-
+#
 # 1.upto(500) do |i|
 #   stepid = Step.all.sample.id
 #   studentid = Student.all.sample.id
@@ -317,7 +321,7 @@ require 'faker'
 #   end
 #   p "ChekStep #{i} : créé"
 # end
-
+#
 # 1.upto(100) do |i|
 #   GeneralQuestionVote.create!(
 #     general_question_id: GeneralQuestion.all.sample.id,
