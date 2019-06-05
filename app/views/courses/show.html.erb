@@ -1,10 +1,16 @@
 <% if @is_teacher %>
 <%= render "teacher_show" %>
+
 <% elsif @is_student %>
 <%= render "student_show" %>
+
 <% end %>
 
 
 <%= render "general_questions/general_questions_index" %>
 
 <%= render "general_questions/general_questions_form" %>
+
+
+<%= stylesheet_link_tag "courses/show" %>
+<%= javascript_include_tag 'courses/show' %>

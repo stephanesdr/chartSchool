@@ -44,6 +44,10 @@ class CoursesController < ApplicationController
 
     @teacher = current_person
     @student = current_person
+
+    gon.watch.steps = @steps.as_json(include: [:step_people])
+    gon.watch.course = @course.as_json(include: [:attendances])
+    gon.course = @course
   end
 
   def index
