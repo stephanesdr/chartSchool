@@ -2,7 +2,8 @@
 
 class TemplatesController < ApplicationController
   include TemplatesHelper
-  before_action :authenticate_person!, only: %i[new create]
+  include CoursesHelper
+  before_action :log_person, only: %i[new create]
   before_action :not_the_creator, only: %i[show edit]
 
   def new
