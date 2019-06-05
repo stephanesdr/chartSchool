@@ -2,9 +2,8 @@
 
 class CoursesController < ApplicationController
   include CoursesHelper
-  before_action :authenticate_person!, only: %i[new create]
+  before_action :log_person, only: %i[new create show]
   before_action :not_authorized_person, only: %i[show]
-  # before_action :not_authorized_student, only: %i[show]
 
   def new
     @courses = Course.all
@@ -51,7 +50,7 @@ class CoursesController < ApplicationController
     @courses = Course.all
 
     @archived_courses_as_attendee = current_person.archived_courses if current_person
-    @pending_courses_as_attendee = current_person.pending_courses if current_person
+    @pending_courses_as_attendee = current_person.pending_courses.reject { |course| course.creator == current_person } if current_person
 
     @archived_courses_as_teacher = current_person.archived_courses.select { |course| course.creator == current_person } if current_person
     @pending_courses_as_teacher = current_person.pending_courses.select { |course| course.creator == current_person } if current_person
@@ -61,7 +60,7 @@ class CoursesController < ApplicationController
   end
 
   def archived_courses
-    @archived_courses_as_attendee = current_person.archived_courses if current_person
+    @archived_courses_as_attendee = current_person.archived_courses.reject { |course| course.creator == current_person } if current_person
 
     @archived_courses_as_teacher = current_person.archived_courses.select { |course| course.creator == current_person } if current_person
   end
