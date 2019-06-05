@@ -26,7 +26,7 @@ class CoursesController < ApplicationController
     @steps = Step.where(course_id: @course)
     @students = @course.attendees
 
-    @questions = GeneralQuestion.where(course_id: @course.id)
+    @questions = GeneralQuestion.where(course_id: @course.id).sort_by(&:vote_number).reverse
     @votes = GeneralQuestionVote.all
     # gon.watch.votes = @votes
     gon.watch.questions = @questions.as_json(include: [:general_question_votes])
