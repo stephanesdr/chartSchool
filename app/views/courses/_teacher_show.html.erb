@@ -33,16 +33,18 @@ Add steps :
 
   <% end %>
 
-<% @steps.each do |step| %>
-<%= step.title %>
-<br>
-<%= step.description %>
-<br>
-<%= step.percentage %>% des étudiants ont fini cette étape <br>
-<br>
-<%  step.percentage.to_i > 100 ? x = 1 : x = (step.percentage.to_f / 100).to_f %>
-<%= progress_bar x , label: true, style: 'min-width: 20px' %>
-<% end %>
-
-
 <%= link_to("Créer un template à partir de ce cours", course_course_template_index_path(@course.id), method: :post) %>
+
+<div id="step-div">
+<h3>ÉTAPES</h3>
+<div id="step_container">
+
+</div>
+</div>
+
+
+
+
+
+
+<%= javascript_include_tag 'progressbar/progressbar_teacher' %>
