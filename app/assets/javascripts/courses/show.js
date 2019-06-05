@@ -27,7 +27,7 @@ function getQuestions(questions)
                         + element.description + "<br>\<br>\ "
                         + element.general_question_votes.length + " votes<br>\ ";
       //console.log( element.general_question_votes);
-      console.log("has voted question-> "+hasVoted( gon.user , element ) );
+      //console.log("has voted question-> "+hasVoted( gon.user , element ) );
       if (gon.student)
       {
         var vote_link = document.createElement("a");

@@ -19,8 +19,8 @@ function getSteps(steps)
     var newDiv = document.createElement("div");
     newDiv.classList.add("step-card");
     newDiv.setAttribute('id','step-card#'+step.id);
-    newDiv.innerHTML = step.title+ "<br>\ "
-                      + step.description + "<br>\<br>\ "
+    newDiv.innerHTML = " <hr/>" + step.title+ "<br>\ "
+                      + step.description + "<br>\ "
                       + "Nombre d'étudiants ayant terminé cette étape : " + step.step_people.length   +" ("+stepPercentage +" %) <br>\ " ;
 
     var progressDiv = document.createElement("div");
@@ -38,6 +38,7 @@ function getSteps(steps)
     loadingDiv.innerHTML = step.step_people.length + " / " + numberAttendance ;
     progressDiv.appendChild(loadingDiv);
     newDiv.appendChild(progressDiv);
+
 
 
 
