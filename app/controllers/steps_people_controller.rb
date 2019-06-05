@@ -9,8 +9,10 @@ class StepsPeopleController < ApplicationController
   end
 
   def destroy
-    @step_student = StepPerson.where(step_id: params[:id], attendee_id: current_person.id)[0]
-    @step_student.destroy
-    # redirect_to request.referer
+    if StepPerson.where(step_id: params[:id], attendee_id: current_person.id).present?
+      @step_student = StepPerson.where(step_id: params[:id], attendee_id: current_person.id)[0]
+      @step_student.destroy
+      # redirect_to request.referer
+    end
   end
 end
