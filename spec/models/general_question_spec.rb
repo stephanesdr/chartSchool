@@ -45,8 +45,22 @@ RSpec.describe GeneralQuestion, type: :model do
     end
   end
 
+  context 'when validation is ok' do
+    it { expect(build(:general_question)).to be_valid }
+  end
+
+  context 'when title is missing' do
+    let(:general_question) { build(:general_question, title: nil, course: FactoryBot.build(:course), attendee: FactoryBot.build(:person)) }
+
+    it { expect(general_question).not_to be_valid }
+  end
+
   describe 'Connexion' do
     it { is_expected.to have_many :general_question_votes }
     it { is_expected.to belong_to :course }
+  end
+
+  describe 'Vote number' do
+    it { expect(general_question.vote_number).to be_a(Integer) }
   end
 end

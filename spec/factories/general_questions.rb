@@ -32,5 +32,7 @@ FactoryBot.define do
     title { "MyString" }
     description { "MyText" }
     teacher_check { false }
+    course { FactoryBot.create(:course) }
+    attendee { FactoryBot.create(:person) }
   end
 end

@@ -26,5 +26,7 @@
 
 FactoryBot.define do
   factory :general_question_vote do
+    attendee { FactoryBot.create(:person) }
+    general_question { FactoryBot.create(:general_question) }
   end
 end

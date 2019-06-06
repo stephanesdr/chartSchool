@@ -23,5 +23,7 @@
 
 FactoryBot.define do
   factory :step_person do
+    step { FactoryBot.create(:step) }
+    person { FactoryBot.create(:person) }
   end
 end

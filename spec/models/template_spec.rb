@@ -41,4 +41,14 @@ RSpec.describe Template, type: :model do
   describe 'Connexion' do
     it { is_expected.to belong_to :person }
   end
+
+  context 'when validation is ok' do
+    it { expect(build(:template)).to be_valid }
+  end
+
+  context 'when title is missing' do
+    let(:template) { build(:template, title: nil) }
+
+    it { expect(template).not_to be_valid }
+  end
 end

@@ -49,8 +49,20 @@ RSpec.describe Course, type: :model do
   describe 'Connexion' do
     it { is_expected.to have_many :attendances }
   end
-  #
-  # context 'when validation is ok' do
-  #   it { expect(build(:course)).to be_valid }
-  # end
+
+  context 'when validation is ok' do
+    it { expect(build(:course)).to be_valid }
+  end
+
+  context 'when title is missing' do
+    let(:course) { build(:course, title: nil) }
+
+    it { expect(course).not_to be_valid }
+  end
+
+  context 'when date is past' do
+    let(:course) { build(:course, start_time: "2011-10-06 02:26:12") }
+
+    it { expect(course).not_to be_valid }
+  end
 end

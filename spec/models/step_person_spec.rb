@@ -24,5 +24,10 @@
 require 'rails_helper'
 
 RSpec.describe StepPerson, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject(:step_person) { described_class.new }
+
+  describe 'Database' do
+    it { is_expected.to have_db_column(:created_at).of_type(:datetime).with_options(null: false) }
+    it { is_expected.to have_db_column(:id).of_type(:integer).with_options(null: false) }
+  end
 end

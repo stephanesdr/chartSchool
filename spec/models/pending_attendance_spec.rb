@@ -37,8 +37,14 @@ RSpec.describe PendingAttendance, type: :model do
   describe 'Connexion' do
     it { is_expected.to belong_to :course }
   end
-  #
-  # context 'when validation is ok' do
-  #   it { expect(build(:pending_attendance)).to be_valid }
-  # end
+
+  context 'when validation is ok' do
+    it { expect(build(:pending_attendance)).to be_valid }
+  end
+
+  context 'when email is missing' do
+    let(:pending_attendance) { build(:pending_attendance, course: FactoryBot.create(:course), email: nil) }
+
+    it { expect(pending_attendance).not_to be_valid }
+  end
 end

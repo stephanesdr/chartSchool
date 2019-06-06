@@ -41,4 +41,14 @@ RSpec.describe StepTemplate, type: :model do
       it { expect(step_template).to belong_to(:template) }
     end
   end
+
+  context 'when validation is ok' do
+    it { expect(build(:step_template)).to be_valid }
+  end
+
+  context 'when title is missing' do
+    let(:step_template) { build(:step, title: nil) }
+
+    it { expect(step_template).not_to be_valid }
+  end
 end

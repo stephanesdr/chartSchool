@@ -38,7 +38,19 @@ RSpec.describe Step, type: :model do
     end
   end
 
-  # context 'when validation is ok' do
-  #   it { expect(build(:step)).to be_valid }
-  # end
+  context "when Model is associated" do
+    describe "Step" do
+      it { expect(step).to belong_to(:course) }
+    end
+  end
+
+  context 'when validation is ok' do
+    it { expect(build(:step)).to be_valid }
+  end
+
+  context 'when title is missing' do
+    let(:step) { build(:step, title: nil) }
+
+    it { expect(step).not_to be_valid }
+  end
 end

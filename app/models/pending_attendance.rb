@@ -22,6 +22,7 @@
 class PendingAttendance < ApplicationRecord
   after_create :unregistered_invitation_send
   belongs_to :course
+  validates :email, presence: true
 
   def unregistered_invitation_send
     StudentMailer.unregistered_invitation(self).deliver_now
