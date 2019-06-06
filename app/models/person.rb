@@ -63,6 +63,10 @@ class Person < ApplicationRecord
     Course.where(creator_id: id)
   end
 
+  def count_courses_as_creator
+    Course.where(creator_id: id).count
+  end
+
   def all_courses
     arr = []
     Attendance.where(attendee_id: id).find_each { |atd| arr << atd.course } if Attendance.where(attendee_id: id).present?
