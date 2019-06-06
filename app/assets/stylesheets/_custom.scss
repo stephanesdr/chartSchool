@@ -139,16 +139,18 @@ $light-grey: #9A9A9A;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #38d9d3;
-    background-color: transparent; 
-    border: 1px solid;
+    color: #ffffff;
+    background-color: #653cef;
+    border: 0px solid;
+    font-weight: 700;
+    border-radius: 25px;
 }
 
 
 .nav-link {
-    color: #38d9d3;
-    background-color: transparent; 
+    color: #653cef;
     border: 1px solid;
+    border-radius: 25px !important;
 }
 
 .nav-link {

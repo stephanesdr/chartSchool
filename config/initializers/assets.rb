@@ -10,6 +10,7 @@ Rails.application.config.assets.version = '1.0'
 # Add Yarn node_modules folder to the asset load path.
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.config.assets.precompile += %w(menu-toggle.js)
+Rails.application.config.assets.precompile += %w(cursor.js)
 
 Rails.application.config.assets.precompile += %w(courses/show.js)
 Rails.application.config.assets.precompile += %w(progressbar/progressbar_student.js)

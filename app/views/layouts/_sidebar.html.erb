@@ -1,13 +1,23 @@
 <!-- Sidebar -->
         <div id="sidebar-wrapper">
+        
             <ul class="sidebar-nav f-xlight">
-
-                <li>
-                    <%= link_to  "STUDENT", class: "" %>
-                </li>
-                <li>
-                    <%= link_to  "TEACHER", class: "" %>
-                </li>
+                <div class="files_link pb-5">
+                  <li>
+                    <p class="color-secondary">Files</p>
+                  </li>
+                  <li>
+                    <%= link_to  "Courses", courses_path, class: "f-size-3 f-bold" %>
+                  </li>
+                </div>
+                <div class="actions_link">
+                  <li>
+                    <p class="color-secondary">Action</p>
+                  </li>
+                  <li>
+                    <%= link_to  "Template", new_template_path, class: "f-size-3 f-bold" %>
+                  </li>
+                </div>
                 
 
             </ul>

@@ -5,6 +5,13 @@ html, body {
   font-family: $font-source;
 
 }
+
+body {
+  margin: 0;
+  height: 100vh;
+  // cursor: none; 
+}
+
 input:focus,
 select:focus,
 textarea:focus,
@@ -12,12 +19,24 @@ button:focus {
     outline: none;
 }
 
+.cursor {
+  position: absolute;
+  background-color: $violet;
+  opacity: 0.1;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  // z-index: 999 !important;
+  transition-duration: 200ms;
+  transition-timing-function: ease-out;
+}
+
 a:hover {
   text-decoration: none;
 }
 
 #wrapper {
-  margin-top: 105px; 
+  // margin-top: 105px; 
   padding-left: 0;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -38,7 +57,9 @@ a:hover {
   height: 100%;
   margin-left: -250px;
   overflow-y: auto;
-  background: $dark-violet;
+  background: #653cef00;
+  transition: all 0.5s ease;
+  border-right: 4px solid #0000000a;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
@@ -75,19 +96,20 @@ a:hover {
 .sidebar-nav li {
   text-indent: 20px;
   line-height: 40px;
-  padding-bottom: 10px;
+  // padding-bottom: 10px;
 }
 
 .sidebar-nav li a {
   display: block;
   text-decoration: none;
-  color: $white;
+  color: $violet;
 }
 
 .sidebar-nav li a:hover {
   text-decoration: none;
-  color: #fff;
-  background: rgba(255,255,255,0.2);
+  color: #38d9d3;
+  background: rgb(101, 60, 239);
+  width: 7px;
 }
 
 .sidebar-nav li a:active,
