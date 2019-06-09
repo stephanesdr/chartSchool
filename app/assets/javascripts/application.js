@@ -17,8 +17,12 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require cable
+//= require_tree ./channels
 
+this.App = {};
 
+App.cable = ActionCable.createConsumer();
 
 $(document).ready(function(){
     setTimeout(function(){

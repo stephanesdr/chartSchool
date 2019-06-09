@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  mount ActionCable.server => '/cable'
+  
   devise_for :people, :controllers => { registrations: "registrations" }
 
   root to: 'connexion/start#index'

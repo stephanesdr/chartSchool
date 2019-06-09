@@ -18,6 +18,7 @@ Rails.application.config.assets.precompile += %w(progressbar/loading-bar.js)
 Rails.application.config.assets.precompile += %w(loading-bar.css)
 Rails.application.config.assets.precompile += %w(general_questions/_general_questions_index.css)
 Rails.application.config.assets.precompile += %w(courses/show.css)
+Rails.application.config.assets.precompile += %w(courses/attendees.css)
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets

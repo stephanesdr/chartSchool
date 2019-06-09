@@ -48,6 +48,12 @@ class CoursesController < ApplicationController
     gon.watch.steps = @steps.as_json(include: [:step_people])
     gon.watch.course = @course.as_json(include: [:attendances])
     gon.course = @course
+    gon.attendees = @course.attendees # .as_json(include: [:attendees])
+    # gon.watch.attendances = @course.attendances#.as_json(include: [:attendees])
+    # gon.attendances = @course.attendances#.as_json(include: [:attendees])
+    # # gon.watch.attendances = @course.attendances#.as_json(include: [:attendees])
+
+    ActionCable.server.broadcast("course_#{@course.id}", user_id: current_person.id.to_s, content: "connexion au channel course par #{current_person.name}")
   end
 
   def index
