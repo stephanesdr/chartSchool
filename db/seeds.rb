@@ -89,7 +89,7 @@ require 'faker'
 #   )
 #   p "Person #{i} : créé"
 # end
-#
+
 # 1.upto(50) do |i|
 #   Course.create!(
 #     title: Faker::Educator.course_name,
@@ -101,18 +101,18 @@ require 'faker'
 #   )
 #   p "Course #{i} : créé"
 # end
-#
+
 # 1.upto(20) do |i|
 #   courseid = Course.all.sample.id
-#   unless Attendance.find_by(course_id: courseid, attendee_id: random_people.id)
+#   unless Attendance.find_by(course_id: courseid, attendee_id: 24)
 #     Attendance.create!(
-#       attendee_id: random_people.id,
-#       course_id: courseid
+#       course_id: courseid,
+#       attendee_id: 24 # random_people.id,
 #     )
 #   end
 #   p " * Attendance for random people  #{i} : créé"
 # end
-
+#
 # 1.upto(100) do |i|
 #   Step.create!(
 #     title: Faker::Appliance.equipment,
