@@ -7,6 +7,8 @@ class CoursesController < ApplicationController
 
   def new
     @courses = Course.all
+    @templates =  Template.all
+    gon.templates = Template.all
   end
 
   def create

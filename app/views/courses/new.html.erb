@@ -1,24 +1,32 @@
+<%=select_tag 'template', options_for_select(@templates.collect{ |template| [template.title, template.id] }.insert(0,"NO Template")), id: "template_select_box" , onchange: "autofill(this.value)"%>
+
+
+
 <%= form_tag url_for(action: 'create'), multipart: true, method: "post" do %>
 
-
+        <br>
 
         <%= label_tag 'Titre' %><br>
-        <%= text_field_tag 'title', @title  %><br>
+        <%= text_field_tag 'title', @title , id:"course_title_box" %><br>
 
         <%= label_tag 'Description' %><br>
-        <%= text_area_tag 'description', @description  %><br>
+        <%= text_area_tag 'description', @description, id:"course_description_box"  %><br>
 
         <%= label_tag 'Ressource' %><br>
-        <%= text_area_tag 'resource', @resource  %><br>
+        <%= text_area_tag 'resource', @resource , id:"course_resource_box" %><br>
 
         <%= label_tag 'Date de début' %><br>
         <%= date_field_tag 'start_time', @start_time  %>
         <%= time_field 'start_hour', @start_hour %><br>
 
-        <%= label_tag 'Date de début' %><br>
+        <%= label_tag 'Date de fin' %><br>
         <%= date_field_tag 'end_time', @end_time  %>
-        <%= time_field 'end_hour', @end_hour %><br>
+        <%= time_field 'end_hour', @end_hour %>
 
+        <br><br>
         <%= submit_tag "Créer le cours" %>
 
   <% end %>
+
+
+<%= javascript_include_tag 'courses/select_template_autofill' %>

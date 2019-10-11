@@ -109,3 +109,5 @@ function questionCount(questions)
 }
 
  gon.watch( "questions" , {interval: 1000}, getQuestions );
+
+ window.stop
