@@ -8,13 +8,12 @@ end
 
 File.read('./.ruby-version')
 
-gem 'dotenv-rails', groups: %i[development test]
-
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.3.1'
 gem 'bootstrap_progressbar'
 gem 'coffee-rails', '~> 4.2'
 gem "devise", ">= 4.6.0"
+gem 'dotenv-rails', groups: %i[development test]
 gem 'faker', '~> 1.8', '>= 1.8.7'
 gem 'gon'
 gem 'jbuilder', '~> 2.5'
@@ -26,6 +25,7 @@ gem 'rails', '~> 5.2.1', '>= 5.2.1.1'
 gem 'sass-rails', '~> 5.0'
 gem 'sidekiq', '~> 5.2.2'
 gem 'turbolinks', '~> 5'
+gem 'turnout'
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
